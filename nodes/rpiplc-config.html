@@ -1,0 +1,39 @@
+<script type="text/javascript">
+	RED.nodes.registerType("rpiplc-config", {
+		category: "config",
+		defaults: {
+			model: { value: "", required: true },
+			name: { value: "" },
+		},
+		label: function() {
+			return this.name || this.model;
+		},
+	});
+</script>
+
+<script type="text/x-red" data-template-name="rpiplc-config">
+	<div class="form-row">
+		<label for="node-config-input-model">Model</label>
+		<select id="node-config-input-model">
+			<option value="RPIPLC_19R">RPIPLC 19R</option>
+			<option value="RPIPLC_21">RPIPLC 21</option>
+			<option value="RPIPLC_38AR">RPIPLC 38AR</option>
+			<option value="RPIPLC_38R">RPIPLC 38R</option>
+			<option value="RPIPLC_42">RPIPLC 42</option>
+			<option value="RPIPLC_50RRA">RPIPLC 50RRA</option>
+			<option value="RPIPLC_53ARR">RPIPLC 53ARR</option>
+			<option value="RPIPLC_54ARA">RPIPLC 54ARA</option>
+			<option value="RPIPLC_57AAR">RPIPLC 57AAR</option>
+			<option value="RPIPLC_57R">RPIPLC 57R</option>
+			<option value="RPIPLC_58">RPIPLC 58</option>
+		</select>
+	</div>
+	<div class="form-row">
+		<label for="node-config-input-name"><i class="fa fa-tag"></i> Name</label>
+		<input type="text" id="node-config-input-name" placeholder="Name">
+	</div>
+</script>
+
+<script type="text/x-red" data-help-name="rpiplc-config">
+	<p><b>TODO</b> node description</p>
+</script>

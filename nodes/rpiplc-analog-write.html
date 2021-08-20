@@ -1,0 +1,107 @@
+<script type="text/javascript">
+	const rpiplcAnalogOutputsAnalog0 = [ "A0.5", "A0.6", "A0.7", ];
+	const rpiplcAnalogOutputsAnalog1 = [ "A1.5", "A1.6", "A1.7", ];
+	const rpiplcAnalogOutputsAnalog2 = [ "A2.5", "A2.6", "A2.7", ];
+	const rpiplcAnalogOutputsRelay0 = [ "A0.0", "A0.1", "A0.2", ];
+	const rpiplcAnalogOutputsRelay1 = [ "A1.0", "A1.1", "A1.2", ];
+	const rpiplcAnalogOutputsRelay2 = [ "A2.0", "A2.1", "A2.2", ];
+
+	const rpiplcAnalogOutputPins = {
+		"RPIPLC_19R": [...rpiplcAnalogOutputsRelay0],
+		"RPIPLC_21": [...rpiplcAnalogOutputsAnalog0],
+		"RPIPLC_38AR": [...rpiplcAnalogOutputsAnalog0, ...rpiplcAnalogOutputsRelay1],
+		"RPIPLC_38R": [...rpiplcAnalogOutputsRelay0, ...rpiplcAnalogOutputsRelay1],
+		"RPIPLC_42": [...rpiplcAnalogOutputsAnalog0, ...rpiplcAnalogOutputsAnalog1],
+		"RPIPLC_50RRA": [...rpiplcAnalogOutputsRelay0, ...rpiplcAnalogOutputsRelay1, ...rpiplcAnalogOutputsAnalog2],
+		"RPIPLC_53ARR": [...rpiplcAnalogOutputsAnalog0, ...rpiplcAnalogOutputsRelay1, ...rpiplcAnalogOutputsRelay2],
+		"RPIPLC_54ARA": [...rpiplcAnalogOutputsAnalog0, ...rpiplcAnalogOutputsRelay1, ...rpiplcAnalogOutputsAnalog2],
+		"RPIPLC_57AAR": [...rpiplcAnalogOutputsAnalog0, ...rpiplcAnalogOutputsAnalog1, ...rpiplcAnalogOutputsRelay2],
+		"RPIPLC_57R": [...rpiplcAnalogOutputsRelay0, ...rpiplcAnalogOutputsRelay1, ...rpiplcAnalogOutputsRelay2],
+		"RPIPLC_58": [...rpiplcAnalogOutputsAnalog0, ...rpiplcAnalogOutputsAnalog1, ...rpiplcAnalogOutputsAnalog2],
+	};
+
+	RED.nodes.registerType("rpiplc-analog-write", {
+		category: "Industrial Shields",
+		color: "#4d8b48",
+
+		defaults: {
+			rpiplc: { value: "", type: "rpiplc-config", required: true },
+			pin: { value: "", required: true },
+			value: { value: "" },
+			name: { value: "" },
+		},
+
+		inputs: 1,
+		outputs: 0,
+
+		icon: "serial.svg",
+		align: "left",
+		labelStyle: "node_label",
+		label: function() {
+			if (this.name) {
+				return this.name;
+			}
+			if (this.pin) {
+				return "analog write " + this.pin;
+			}
+			return "analog write";
+		},
+		paletteLabel: function() {
+			return this.name || "analog write";
+		},
+
+		oneditprepare: function() {
+			const node = this;
+
+			$("#node-input-rpiplc").change(function() {
+				const pinSelect = $("#node-input-pin");
+				if (!pinSelect) {
+					return;
+				}
+				let pins = [];
+				const configId = $(this).val();
+				if (configId) {
+					const configNode = RED.nodes.node(configId);
+					if (configNode) {
+						pins = rpiplcAnalogOutputPins[configNode.model];
+
+						if (!Array.isArray(pins)) {
+							pins = [];
+						}
+					}
+				}
+				const value = pinSelect.val() || node.pin;
+
+				pinSelect.empty();
+				pins.forEach((pin) => pinSelect.append($("<option></option>").val(pin).text(pin)));
+
+				if (pins.includes(value)) {
+					pinSelect.val(value);
+				}
+			}).change();
+		},
+	});
+</script>
+
+<script type="text/x-red" data-template-name="rpiplc-analog-write">
+	<div class="form-row">
+		<label for="node-input-rpiplc">RPIPLC</label>
+		<input type="text" id="node-input-rpiplc" placeholder="RPIPLC">
+	</div>
+	<div class="form-row">
+		<label for="node-input-pin"><i class="fa fa-circle-o"></i> Input</label>
+		<select id="node-input-pin" placeholder="Select an input"></select>
+	</div>
+	<div class="form-row">
+		<label for="node-input-value">Value</label>
+		<input type="text" id="node-input-value" placeholder="Value">
+	</div>
+	<div class="form-row">
+		<label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+		<input type="text" id="node-input-name" placeholder="Name">
+	</div>
+</script>
+
+<script type="text/x-red" data-help-name="rpiplc-analog-write">
+	<p><b>TODO</b> node description</p>
+</script>

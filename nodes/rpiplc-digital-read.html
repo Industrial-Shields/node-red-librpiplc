@@ -1,0 +1,102 @@
+<script type="text/javascript">
+	const rpiplcDigitalInputsAnalog0 = [ "I0.0", "I0.1", "I0.2", "I0.3", "I0.4", "I0.5", "I0.6", "I0.7", "I0.8", "I0.9", "I0.10", "I0.11", "I0.12", ];
+	const rpiplcDigitalInputsAnalog1 = [ "I1.0", "I1.1", "I1.2", "I1.3", "I1.4", "I1.5", "I1.6", "I1.7", "I1.8", "I1.9", "I1.10", "I1.11", "I1.12", ];
+	const rpiplcDigitalInputsAnalog2 = [ "I2_0", "I2_1", "I2_2", "I2_3", "I2_4", "I2_5", "I2_6", "I2_7", "I2_8", "I2_9", "I2_10", ];
+	const rpiplcDigitalInputsRelay0 = [ "I0.0", "I0.1", "I0.2", "I0.3", "I0.4", "I0.5", ];
+	const rpiplcDigitalInputsRelay1 = [ "I1_0", "I1_1", "I1_2", "I1_3", "I1_4", "I1_5", ];
+	const rpiplcDigitalInputsRelay2 = [ "I2_0", "I2_1", "I2_2", "I2_3", "I2_4", "I2_5", ];
+
+	const rpiplcDigitalInputPins = {
+		"RPIPLC_19R": [...rpiplcDigitalInputsRelay0],
+		"RPIPLC_21": [...rpiplcDigitalInputsAnalog0],
+		"RPIPLC_38AR": [...rpiplcDigitalInputsAnalog0, ...rpiplcDigitalInputsRelay1],
+		"RPIPLC_38R": [...rpiplcDigitalInputsRelay0, ...rpiplcDigitalInputsRelay1],
+		"RPIPLC_42": [...rpiplcDigitalInputsAnalog0, ...rpiplcDigitalInputsAnalog1],
+		"RPIPLC_50RRA": [...rpiplcDigitalInputsRelay0, ...rpiplcDigitalInputsRelay1, ...rpiplcDigitalInputsAnalog2],
+		"RPIPLC_53ARR": [...rpiplcDigitalInputsAnalog0, ...rpiplcDigitalInputsRelay1, ...rpiplcDigitalInputsRelay2],
+		"RPIPLC_54ARA": [...rpiplcDigitalInputsAnalog0, ...rpiplcDigitalInputsRelay1, ...rpiplcDigitalInputsAnalog2],
+		"RPIPLC_57AAR": [...rpiplcDigitalInputsAnalog0, ...rpiplcDigitalInputsAnalog1, ...rpiplcDigitalInputsRelay2],
+		"RPIPLC_57R": [...rpiplcDigitalInputsRelay0, ...rpiplcDigitalInputsRelay1, ...rpiplcDigitalInputsRelay2],
+		"RPIPLC_58": [...rpiplcDigitalInputsAnalog0, ...rpiplcDigitalInputsAnalog1, ...rpiplcDigitalInputsAnalog2],
+	};
+
+	RED.nodes.registerType("rpiplc-digital-read", {
+		category: "Industrial Shields",
+		color: "#4d8b48",
+
+		defaults: {
+			rpiplc: { value: "", type: "rpiplc-config", required: true },
+			pin: { value: "", required: true},
+			name: { value: "" },
+		},
+
+		inputs: 1,
+		outputs: 1,
+
+		icon: "serial.svg",
+		align: "left",
+		labelStyle: "node_label",
+		label: function() {
+			if (this.name) {
+				return this.name;
+			}
+			if (this.pin) {
+				return "digital read " + this.pin;
+			}
+			return "digital read";
+		},
+		paletteLabel: function() {
+			return this.name || "digital read";
+		},
+
+		oneditprepare: function() {
+			const node = this;
+
+			$("#node-input-rpiplc").change(function() {
+				const pinSelect = $("#node-input-pin");
+				if (!pinSelect) {
+					return;
+				}
+				let pins = [];
+				const configId = $(this).val();
+				if (configId) {
+					const configNode = RED.nodes.node(configId);
+					if (configNode) {
+						pins = rpiplcDigitalInputPins[configNode.model];
+
+						if (!Array.isArray(pins)) {
+							pins = [];
+						}
+					}
+				}
+				const value = pinSelect.val() || node.pin;
+
+				pinSelect.empty();
+				pins.forEach((pin) => pinSelect.append($("<option></option>").val(pin).text(pin)));
+
+				if (pins.includes(value)) {
+					pinSelect.val(value);
+				}
+			}).change();
+		},
+	});
+</script>
+
+<script type="text/x-red" data-template-name="rpiplc-digital-read">
+	<div class="form-row">
+		<label for="node-input-rpiplc">RPIPLC</label>
+		<input type="text" id="node-input-rpiplc" placeholder="RPIPLC">
+	</div>
+	<div class="form-row">
+		<label for="node-input-pin"><i class="fa fa-circle-o"></i> Input</label>
+		<select id="node-input-pin" placeholder="Select an input"></select>
+	</div>
+	<div class="form-row">
+		<label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+		<input type="text" id="node-input-name" placeholder="Name">
+	</div>
+</script>
+
+<script type="text/x-red" data-help-name="rpiplc-digital-read">
+	<p><b>TODO</b> node description</p>
+</script>

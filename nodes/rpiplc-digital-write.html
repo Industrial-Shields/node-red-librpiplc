@@ -1,0 +1,111 @@
+<script type="text/javascript">
+	const rpiplcDigitalOutputsDigital0 = [ "Q0.0", "Q0.1", "Q0.2", "Q0.3", "Q0.4", "Q0.5", "Q0.6", "Q0.7", ];
+	const rpiplcDigitalOutputsDigital1 = [ "Q1.0", "Q1.1", "Q1.2", "Q1.3", "Q1.4", "Q1.5", "Q1.6", "Q1.7", ];
+	const rpiplcDigitalOutputsDigital2 = [ "Q2.0", "Q2.1", "Q2.2", "Q2.3", "Q2.4", "Q2.5", "Q2.6", "Q2.7", ];
+	const rpiplcDigitalOutputsRelay0 = [ "Q0.0", "Q0.1", "Q0.2", ];
+	const rpiplcDigitalOutputsRelay1 = [ "Q1.0", "Q1.1", "Q1.2", ];
+	const rpiplcDigitalOutputsRelay2 = [ "Q2.0", "Q2.1", "Q2.2", ];
+
+	const rpiplcDigitalOutputPins = {
+		"RPIPLC_19R": [...rpiplcDigitalOutputsRelay0],
+		"RPIPLC_21": [...rpiplcDigitalOutputsDigital0],
+		"RPIPLC_38AR": [...rpiplcDigitalOutputsDigital0, ...rpiplcDigitalOutputsRelay1],
+		"RPIPLC_38R": [...rpiplcDigitalOutputsRelay0, ...rpiplcDigitalOutputsRelay1],
+		"RPIPLC_42": [...rpiplcDigitalOutputsDigital0, ...rpiplcDigitalOutputsDigital1],
+		"RPIPLC_50RRA": [...rpiplcDigitalOutputsRelay0, ...rpiplcDigitalOutputsRelay1, ...rpiplcDigitalOutputsDigital2],
+		"RPIPLC_53ARR": [...rpiplcDigitalOutputsDigital0, ...rpiplcDigitalOutputsRelay1, ...rpiplcDigitalOutputsRelay2],
+		"RPIPLC_54ARA": [...rpiplcDigitalOutputsDigital0, ...rpiplcDigitalOutputsRelay1, ...rpiplcDigitalOutputsDigital2],
+		"RPIPLC_57AAR": [...rpiplcDigitalOutputsDigital0, ...rpiplcDigitalOutputsDigital1, ...rpiplcDigitalOutputsRelay2],
+		"RPIPLC_57R": [...rpiplcDigitalOutputsRelay0, ...rpiplcDigitalOutputsRelay1, ...rpiplcDigitalOutputsRelay2],
+		"RPIPLC_58": [...rpiplcDigitalOutputsDigital0, ...rpiplcDigitalOutputsDigital1, ...rpiplcDigitalOutputsDigital2],
+	};
+
+	RED.nodes.registerType("rpiplc-digital-write", {
+		category: "Industrial Shields",
+		color: "#4d8b48",
+
+		defaults: {
+			rpiplc: { value: "", type: "rpiplc-config", required: true },
+			pin: { value: "", required: true },
+			value: { value: "" },
+			name: { value: "" },
+		},
+
+		inputs: 1,
+		outputs: 0,
+
+		icon: "serial.svg",
+		align: "left",
+		labelStyle: "node_label",
+		label: function() {
+			if (this.name) {
+				return this.name;
+			}
+			if (this.pin) {
+				return "digital write " + this.pin;
+			}
+			return "digital write";
+		},
+		paletteLabel: function() {
+			return this.name || "digital write";
+		},
+
+		oneditprepare: function() {
+			const node = this;
+
+			$("#node-input-rpiplc").change(function() {
+				const pinSelect = $("#node-input-pin");
+				if (!pinSelect) {
+					return;
+				}
+				let pins = [];
+				const configId = $(this).val();
+				if (configId) {
+					const configNode = RED.nodes.node(configId);
+					if (configNode) {
+						pins = rpiplcDigitalOutputPins[configNode.model];
+
+						if (!Array.isArray(pins)) {
+							pins = [];
+						}
+					}
+				}
+				const value = pinSelect.val() || node.pin;
+
+				pinSelect.empty();
+				pins.forEach((pin) => pinSelect.append($("<option></option>").val(pin).text(pin)));
+
+				if (pins.includes(value)) {
+					pinSelect.val(value);
+				}
+			}).change();
+		},
+	});
+</script>
+
+<script type="text/x-red" data-template-name="rpiplc-digital-write">
+	<div class="form-row">
+		<label for="node-input-rpiplc">RPIPLC</label>
+		<input type="text" id="node-input-rpiplc" placeholder="RPIPLC">
+	</div>
+	<div class="form-row">
+		<label for="node-input-pin"><i class="fa fa-circle-o"></i> Input</label>
+		<select id="node-input-pin" placeholder="Select an input"></select>
+	</div>
+	<div class="form-row">
+		<label for="node-input-value">Value</label>
+		<select id="node-input-value" placeholder="Value">
+			<option value="">-</option>
+			<option value="0">LOW</option>
+			<option value="1">HIGH</option>
+		</select>
+	</div>
+	<div class="form-row">
+		<label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+		<input type="text" id="node-input-name" placeholder="Name">
+	</div>
+</script>
+
+<script type="text/x-red" data-help-name="rpiplc-digital-write">
+	<p><b>TODO</b> node description</p>
+</script>

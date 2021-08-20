@@ -1,0 +1,27 @@
+{
+	"name": "node-red-contrib-rpiplc-node",
+	"version": "1.0.0",
+	"description": "",
+	"keywords": [
+		"node-red",
+		"node-red-contrib-rpiplc-node",
+		"industrial",
+		"Industrial Shields",
+		"raspberry",
+		"Raspberry PI"
+	],
+	"author": "IndustrialShields by Boot&Work Corp.",
+	"license": "LGPL",
+	"node-red": {
+		"nodes": {
+			"rpiplc-config": "nodes/rpiplc-config.js",
+			"rpiplc-analog-read": "nodes/rpiplc-analog-read.js",
+			"rpiplc-analog-write": "nodes/rpiplc-analog-write.js",
+			"rpiplc-digital-read": "nodes/rpiplc-digital-read.js",
+			"rpiplc-digital-write": "nodes/rpiplc-digital-write.js"
+		}
+	},
+	"dependencies": {
+		"@industrialshields/rpiplc": "^1.0.0"
+	}
+}
