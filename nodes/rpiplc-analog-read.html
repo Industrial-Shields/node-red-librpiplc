@@ -98,5 +98,17 @@
 </script>
 
 <script type="text/x-red" data-help-name="rpiplc-analog-read">
-	<p><b>TODO</b> node description</p>
+	<p><b>Analog Read</b>
+	Raspberry PLC input node. Reads the value from the specified analog pin. You can select the model of the Raspberry PLC, and the analog input pin from which we will read the value.</p>
+	
+	<p><b>Analog Write</b>
+	Raspberry PLC output node. Writes the specified value to the analog pin selected. You can set the model of the Raspberry PLC, the analog output pin where we will write the value and the value itself.</br>
+	<b>Note:</b> It is also possible to set the value with an incoming msg.payload with the specified values, that must match the message type: number (from 0 to 4095).</p>
+	
+	<p><b>Digital Read</b>
+	Raspberry PLC input node. Reads the value from the specified digital pin. You can select the model of the Raspberry PLC, and the digital input pin from which we will read the value.</p>
+	
+	<p><b>Digital Write</b>
+	Raspberry PLC output node. Writes the specified value to the digital pin selected. You can set the model of the Raspberry PLC, the digital output pin where we will write the value and the value itself.</br> 
+	<b>Note:</b> It is also possible to set the value with an incoming msg.payload with the specified values, that must match the message types: string (either "HIGH" or "LOW") and number (either 1 or 0).</p>
 </script>
