@@ -42,7 +42,10 @@
 				return this.name;
 			}
 			if (this.pin) {
-				return "analog write " + this.pin;
+				if (this.value === '') {
+					return `write ${this.pin}`;
+				}
+				return `write ${this.pin}: ${this.value}`;
 			}
 			return "analog write";
 		},

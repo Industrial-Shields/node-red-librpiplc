@@ -9,7 +9,9 @@ module.exports = function(RED) {
 				let value = parseInt(config.value) || this.rpiplc.instance.LOW;
 
 				if (typeof msg.payload == 'number') {
-					value = msg.payload;
+					value = msg.payload > 0 ? this.rpiplc.instance.HIGH : this.rpiplc.instance.LOW;
+				} else if (typeof msg.payload == 'boolean') {
+					value = msg.payload ? this.rpiplc.instance.HIGH : this.rpiplc.instance.LOW;
 				} else if (msg.payload === 'HIGH') {
 					value = this.rpiplc.instance.HIGH;
 				} else if (msg.payload === 'LOW') {
