@@ -12,6 +12,10 @@
 	],
 	"author": "IndustrialShields by Boot&Work Corp.",
 	"license": "LGPL",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Industrial-Shields/node-red-contrib-rpiplc-node.git"
+	},
 	"node-red": {
 		"nodes": {
 			"rpiplc-config": "nodes/rpiplc-config.js",
