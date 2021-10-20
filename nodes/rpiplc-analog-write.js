@@ -6,8 +6,10 @@ module.exports = function(RED) {
 
 		this.on("input", msg => {
 			let pin = config.pin;
-			let value = parseInt(config.value) || 0;
-			if (typeof msg.payload == 'number') {
+			let value = 0;
+			if (config.value != '') {
+				value = parseInt(config.value) || 0;
+			} else if (typeof msg.payload == 'number') {
 				value = msg.payload;
 			}
 
