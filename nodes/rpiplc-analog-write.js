@@ -16,6 +16,7 @@ module.exports = function(RED) {
 			if (this.rpiplc && pin) {
 				this.rpiplc.instance.analogWrite(pin, value);
 			}
+			this.send(msg);
 		});
 
 		this.on("close", done => {
