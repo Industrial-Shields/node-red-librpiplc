@@ -20,6 +20,7 @@ module.exports = function(RED) {
 				}
 
 				this.rpiplc.instance.digitalWrite(config.pin, value);
+				this.send(msg)
 			}
 		});
 
