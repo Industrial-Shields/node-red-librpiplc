@@ -1,6 +1,6 @@
 {
 	"name": "node-red-contrib-rpiplc-node",
-	"version": "1.0.7",
+	"version": "2.0.1",
 	"description": "",
 	"keywords": [
 		"node-red",
@@ -26,6 +26,6 @@
 		}
 	},
 	"dependencies": {
-		"@industrialshields/rpiplc": "^1.0.1"
+		"@industrialshields/rpiplc": "^2.0.0"
 	}
 }
