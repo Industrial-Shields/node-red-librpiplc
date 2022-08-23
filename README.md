@@ -10,9 +10,13 @@ A collection of Node-RED nodes for using analog inputs, analog outputs, digital 
 To install the stable version use the Menu - Manage palette - Install option and search for node-red-contrib-rpiplc-node, or run the following command in your Node-RED user directory, typically ~/.node-red
 
 ```
-npm i node-red-contrib-rpiplc-node
+npm i node-red-contrib-rpiplc-node@<version>
 ```
-
+    version = 1.X.X = RPI PLC Version 3
+    
+    version = 2.X.X = RPI PLC Version 4
+    
+    You can find the available tags here: https://github.com/Industrial-Shields/node-red-contrib-rpiplc-node/tags
 
 ## Usage
 Provides four nodes:
