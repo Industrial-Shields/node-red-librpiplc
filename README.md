@@ -7,6 +7,9 @@ A collection of Node-RED nodes for using analog inputs, analog outputs, digital 
 
 
 ## Install
+Remember that, before anything else, you must have our C++ rpiplc-lib library installed in your RPI PLC:
+https://github.com/Industrial-Shields/rpiplc-lib
+
 To install the stable version use the Menu - Manage palette - Install option and search for node-red-contrib-rpiplc-node, or run the following command in your Node-RED user directory, typically ~/.node-red
 
 ```
