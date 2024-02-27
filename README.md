@@ -1,25 +1,36 @@
-# node-red-contrib-rpiplc-node
-A collection of Node-RED nodes for using analog inputs, analog outputs, digital inputs and digital outputs from Raspberry PLC of Industrial Shields®.
+# node-red-librpiplc
 
-<a href="https://www.npmjs.com/package/node-red-contrib-rpiplc-node"><img title="npm version" src="https://badgen.net/npm/v/node-red-contrib-rpiplc-node"></a>
-<a href="https://www.npmjs.com/package/node-red-contrib-rpiplc-node"><img title="npm downloads" src="https://badgen.net/npm/dt/node-red-contrib-rpiplc-node"></a>
+### by Industrial Shields
+**node-red-librpiplc** provides a Node-RED wrapper for the librpiplc C library, enabling applications to interface with the GPIOs of Raspberry Pi based Industrial Shields PLCs:
+* Analog reads and write
+* Digital reads and writes
+* Relay controlling
+
+<a href="https://www.npmjs.com/package/@industrial-shields/node-red-librpiplc"><img title="npm version" src="https://badgen.net/npm/v/@industrial-shields/node-red-librpiplc"></a>
+<a href="https://www.npmjs.com/package/@industrial-shields/node-red-librpiplc"><img title="npm version" src="https://badgen.net/npm/dt/@industrial-shields/node-red-librpiplc"></a>
 
 
 
-## Install
-Remember that, before anything else, you must have our C++ rpiplc-lib library installed in your RPI PLC:
-https://github.com/Industrial-Shields/rpiplc-lib
+## Prerequisites
 
-To install the stable version use the Menu - Manage palette - Install option and search for node-red-contrib-rpiplc-node, or run the following command in your Node-RED user directory, typically ~/.node-red
+### One of our PLCs: https://www.industrialshields.com/
 
+
+### Installing librpiplc
+
+You must first install the [librpiplc](https://github.com/Industrial-Shields/librpiplc), as this library depends on it.
+
+
+
+## Installing
+
+To install the stable version use the Node-RED Menu -> Manage palette -> Install option, and search for `@industrial-shields/node-red-librpiplc`. Or you can also run the following command in your Node-RED user directory, typically ~/.node-red:
 ```
-npm i node-red-contrib-rpiplc-node@<version>
+npm install @industrial-shields/librpiplc@<tagname>
 ```
-    version = 1.X.X = RPI PLC Version 3
-    
-    version = 2.X.X = RPI PLC Version 4
-    
-    You can find the available tags here: https://github.com/Industrial-Shields/node-red-contrib-rpiplc-node/tags
+Where `<tagname>` is the version you wish to download. Before this unification, you had to choose between versions 1.X.X (for V3 PLCs) or 2.X.X (for V4 PLCs). As of 3.X.X this library is compatible with our PLCs regardless of it's version.
+You can check the available versions in here: https://github.com/Industrial-Shields/node-red-librpiplc/tags
+
 
 ## Usage
 Provides four nodes:
@@ -32,24 +43,25 @@ Provides four nodes:
 
 ### <a name="analog-read"></a>1. Analog Read
 
-Reads the value from the specified analog pin. The Raspberry PLC model and input pin must be selected.
+Reads the value from the specified analog pin. You have to provide both the version and the model of the Raspberry PLC you are using. Then select an input pin.
 
 ![analog-read](https://user-images.githubusercontent.com/61695455/130433880-cc4007e6-60df-4f32-a01d-0aa74b52a5c7.png)
 
 
 ### <a name="analog-write"></a>2. Analog Write
-Writes an analog value (PWM wave) to a pin. The Raspberry PLC model, input pin and a value between 0 and 4095 must be set.
+
+Writes an analog value (a PWM wave) in the specified analog pin. You have to provide both the version and the model of the Raspberry PLC you are using. Then select an output pin and specify a value between 0 and 4095 (0-10V).
 
 ![analog-write](https://user-images.githubusercontent.com/61695455/130433860-c204c9e9-101b-4a5e-9ef9-c05293de6632.png)
 
 
 ### <a name="digital-read"></a>3. Digital Read
-Reads the value from a specified digital pin, either HIGH or LOW. The Raspberry PLC model and input pin must be selected.
+Reads the value from a specified digital pin, either HIGH or LOW. You have to provide both the version and the model of the Raspberry PLC you are using. Then select the input pin that will be read.
 
 ![digital-read](https://user-images.githubusercontent.com/61695455/130433842-ee026f14-8c37-4f69-99ba-fe1d5baa2b08.png)
 
 
 ### <a name="digital-write"></a>4. Digital Write
-Writes a HIGH or a LOW value to a digital pin. The Raspberry PLC model, input pin and value must be set.
+Writes a value to a specified digital pin. You have to provide both the version and the model of the Raspberry PLC you are using. Then select the input pin that will be written, and a value (either HIGH or LOW).
 
 ![digital-write](https://user-images.githubusercontent.com/61695455/130433826-61f2cbc8-9d93-4284-b1c4-7931d99da6d2.png)

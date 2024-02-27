@@ -1,20 +1,20 @@
 {
-	"name": "node-red-contrib-rpiplc-node",
-	"version": "2.0.1",
-	"description": "",
+	"name": "@industrial-shields/node-red-librpiplc",
+	"version": "3.0.0",
+	"description": "Industrial Shields librpiplc bindings for Node-RED",
 	"keywords": [
 		"node-red",
-		"node-red-contrib-rpiplc-node",
+		"node-red-librpiplc",
 		"industrial",
 		"Industrial Shields",
 		"raspberry",
-		"Raspberry PI"
+		"Raspberry Pi"
 	],
 	"author": "IndustrialShields by Boot&Work Corp.",
-	"license": "LGPL",
+	"license": "LGPL-3.0-or-later",
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/Industrial-Shields/node-red-contrib-rpiplc-node.git"
+		"url": "git+https://github.com/Industrial-Shields/node-red-librpiplc"
 	},
 	"node-red": {
 		"nodes": {
@@ -26,6 +26,6 @@
 		}
 	},
 	"dependencies": {
-		"@industrialshields/rpiplc": "^2.0.0"
+		"@industrial-shields/librpiplc": "^3.0.0"
 	}
 }
