@@ -19,6 +19,7 @@
 	"node-red": {
 		"nodes": {
 			"rpiplc-config": "nodes/rpiplc-config.js",
+			"rpiplc-set-config": "nodes/rpiplc-set-config.js",
 			"rpiplc-analog-read": "nodes/rpiplc-analog-read.js",
 			"rpiplc-analog-write": "nodes/rpiplc-analog-write.js",
 			"rpiplc-digital-read": "nodes/rpiplc-digital-read.js",

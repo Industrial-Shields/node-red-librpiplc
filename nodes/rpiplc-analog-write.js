@@ -14,6 +14,9 @@ module.exports = function(RED) {
 			}
 
 			if (this.rpiplc && pin) {
+				if (!this.rpiplc.instance) {
+					throw new Error("RPIPLC instance not defined. Please use rpiplc set config node");
+				}
 				this.rpiplc.instance.analogWrite(pin, value);
 			}
 		});
@@ -21,10 +24,6 @@ module.exports = function(RED) {
 		this.on("close", done => {
 			done();
 		});
-
-		if (this.rpiplc) {
-			this.rpiplc.instance.pinMode(config.pin, this.rpiplc.instance.OUTPUT);
-		}
 	}
 
 	RED.nodes.registerType("rpiplc-analog-write", rpiplcAnalogWriteNode);

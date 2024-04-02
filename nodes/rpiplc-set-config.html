@@ -1,0 +1,41 @@
+<script type="text/javascript">
+	RED.nodes.registerType("rpiplc-set-config", {
+		category: "Industrial Shields",
+		color: "#C7E9C0",
+
+		defaults: {
+			rpiplc: { value: "", type: "rpiplc-config", required: true},
+			name: { value: "" },
+		},
+
+		inputs: 1,
+		outputs: 1,
+
+		icon: "serial.svg",
+		align: "left",
+		labelStyle: "node_label",
+		label: function() {
+			return this.name || "rpiplc set config";
+		},
+
+		paletteLabel: function() {
+			return "rpiplc set config";
+		},
+	});
+</script>
+
+<script type="text/x-red" data-template-name="rpiplc-set-config">
+  	<div class="form-row">
+		<label for="node-input-rpiplc">RPIPLC</label>
+		<input type="text" id="node-input-rpiplc" placeholder="RPIPLC">
+	</div>
+	<div class="form-row">
+		<label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+		<input type="text" id="node-input-name" placeholder="Name">
+	</div>
+</script>
+
+<script type="text/x-red" data-help-name="rpiplc-set-config">
+	<p><b>Set custom configuration</b>. Raspberry PLC set custom configuration node. It enables a user to modify a configuration marked as Custom, by passing a message with the "version" and "model" fields. It CANNOT be applied to non-custom profiles.</p>
+	</script>
+</script>

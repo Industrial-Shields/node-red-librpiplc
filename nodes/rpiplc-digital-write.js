@@ -19,6 +19,9 @@ module.exports = function(RED) {
 					value = this.rpiplc.instance.LOW;
 				}
 
+				if (!this.rpiplc.instance) {
+					throw new Error("RPIPLC instance not defined. Please use rpiplc set config node");
+				}
 				this.rpiplc.instance.digitalWrite(config.pin, value);
 			}
 		});
@@ -26,10 +29,6 @@ module.exports = function(RED) {
 		this.on("close", done => {
 			done();
 		});
-
-		if (this.rpiplc) {
-			this.rpiplc.instance.pinMode(config.pin, this.rpiplc.instance.OUTPUT);
-		}
 	}
 
 	RED.nodes.registerType("rpiplc-digital-write", rpiplcDigitalWriteNode);

@@ -8,6 +8,9 @@ module.exports = function(RED) {
 			let pin = config.pin;
 
 			if (this.rpiplc && pin) {
+				if (!this.rpiplc.instance) {
+					throw new Error("RPIPLC instance not defined. Please use rpiplc set config node");
+				}
 				msg.payload = this.rpiplc.instance.digitalRead(pin);
 				this.send(msg);
 			}
@@ -16,10 +19,6 @@ module.exports = function(RED) {
 		this.on("close", done => {
 			done();
 		});
-
-		if (this.rpiplc) {
-			this.rpiplc.instance.pinMode(config.pin, this.rpiplc.instance.INPUT);
-		}
 	}
 
 	RED.nodes.registerType("rpiplc-digital-read", rpiplcDigitalReadNode);

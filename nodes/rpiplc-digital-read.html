@@ -18,6 +18,7 @@
 		"RPIPLC_57AAR": [...rpiplcDigitalInputsAnalog0, ...rpiplcDigitalInputsAnalog1, ...rpiplcDigitalInputsRelay2],
 		"RPIPLC_57R": [...rpiplcDigitalInputsRelay0, ...rpiplcDigitalInputsRelay1, ...rpiplcDigitalInputsRelay2],
 		"RPIPLC_58": [...rpiplcDigitalInputsAnalog0, ...rpiplcDigitalInputsAnalog1, ...rpiplcDigitalInputsAnalog2],
+		"CUSTOM": Array.from(new Set(Object.values([...rpiplcDigitalInputsAnalog0, ...rpiplcDigitalInputsAnalog1, ...rpiplcDigitalInputsAnalog2, ...rpiplcDigitalInputsRelay0, ...rpiplcDigitalInputsRelay1, ...rpiplcDigitalInputsRelay2]).flat())),
 	};
 
 	RED.nodes.registerType("rpiplc-digital-read", {
