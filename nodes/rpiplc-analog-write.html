@@ -7,18 +7,18 @@
 	const rpiplcAnalogOutputsRelay2 = [ "Q2.0", "Q2.1", "Q2.2", "A2.0", "A2.1", "A2.2", ];
 
 	const rpiplcAnalogOutputPins = {
-		"RPIPLC_19R": [...rpiplcAnalogOutputsRelay0],
-		"RPIPLC_21": [...rpiplcAnalogOutputsAnalog0],
-		"RPIPLC_38AR": [...rpiplcAnalogOutputsAnalog0, ...rpiplcAnalogOutputsRelay1],
-		"RPIPLC_38R": [...rpiplcAnalogOutputsRelay0, ...rpiplcAnalogOutputsRelay1],
-		"RPIPLC_42": [...rpiplcAnalogOutputsAnalog0, ...rpiplcAnalogOutputsAnalog1],
-		"RPIPLC_50RRA": [...rpiplcAnalogOutputsRelay0, ...rpiplcAnalogOutputsRelay1, ...rpiplcAnalogOutputsAnalog2],
-		"RPIPLC_53ARR": [...rpiplcAnalogOutputsAnalog0, ...rpiplcAnalogOutputsRelay1, ...rpiplcAnalogOutputsRelay2],
-		"RPIPLC_54ARA": [...rpiplcAnalogOutputsAnalog0, ...rpiplcAnalogOutputsRelay1, ...rpiplcAnalogOutputsAnalog2],
-		"RPIPLC_57AAR": [...rpiplcAnalogOutputsAnalog0, ...rpiplcAnalogOutputsAnalog1, ...rpiplcAnalogOutputsRelay2],
-		"RPIPLC_57R": [...rpiplcAnalogOutputsRelay0, ...rpiplcAnalogOutputsRelay1, ...rpiplcAnalogOutputsRelay2],
-		"RPIPLC_58": [...rpiplcAnalogOutputsAnalog0, ...rpiplcAnalogOutputsAnalog1, ...rpiplcAnalogOutputsAnalog2],
-	    	"CUSTOM": Array.from(new Set(Object.values([...rpiplcAnalogOutputsAnalog0, ...rpiplcAnalogOutputsAnalog1, ...rpiplcAnalogOutputsAnalog2, ...rpiplcAnalogOutputsRelay0, ...rpiplcAnalogOutputsRelay1, ...rpiplcAnalogOutputsRelay2]).flat())),
+		"RPIPLC_19R": ["Message passed", ...rpiplcAnalogOutputsRelay0],
+		"RPIPLC_21": ["Message passed", ...rpiplcAnalogOutputsAnalog0],
+		"RPIPLC_38AR": ["Message passed", ...rpiplcAnalogOutputsAnalog0, ...rpiplcAnalogOutputsRelay1],
+		"RPIPLC_38R": ["Message passed", ...rpiplcAnalogOutputsRelay0, ...rpiplcAnalogOutputsRelay1],
+		"RPIPLC_42": ["Message passed", ...rpiplcAnalogOutputsAnalog0, ...rpiplcAnalogOutputsAnalog1],
+		"RPIPLC_50RRA": ["Message passed", ...rpiplcAnalogOutputsRelay0, ...rpiplcAnalogOutputsRelay1, ...rpiplcAnalogOutputsAnalog2],
+		"RPIPLC_53ARR": ["Message passed", ...rpiplcAnalogOutputsAnalog0, ...rpiplcAnalogOutputsRelay1, ...rpiplcAnalogOutputsRelay2],
+		"RPIPLC_54ARA": ["Message passed", ...rpiplcAnalogOutputsAnalog0, ...rpiplcAnalogOutputsRelay1, ...rpiplcAnalogOutputsAnalog2],
+		"RPIPLC_57AAR": ["Message passed", ...rpiplcAnalogOutputsAnalog0, ...rpiplcAnalogOutputsAnalog1, ...rpiplcAnalogOutputsRelay2],
+		"RPIPLC_57R": ["Message passed", ...rpiplcAnalogOutputsRelay0, ...rpiplcAnalogOutputsRelay1, ...rpiplcAnalogOutputsRelay2],
+		"RPIPLC_58": ["Message passed", ...rpiplcAnalogOutputsAnalog0, ...rpiplcAnalogOutputsAnalog1, ...rpiplcAnalogOutputsAnalog2],
+		"CUSTOM": Array.from(new Set(Object.values(["Message passed", ...rpiplcAnalogOutputsAnalog0, ...rpiplcAnalogOutputsAnalog1, ...rpiplcAnalogOutputsAnalog2, ...rpiplcAnalogOutputsRelay0, ...rpiplcAnalogOutputsRelay1, ...rpiplcAnalogOutputsRelay2]).flat())),
 	};
 
 	RED.nodes.registerType("rpiplc-analog-write", {
@@ -33,7 +33,7 @@
 		},
 
 		inputs: 1,
-		outputs: 0,
+		outputs: 1,
 
 		icon: "serial.svg",
 		align: "left",

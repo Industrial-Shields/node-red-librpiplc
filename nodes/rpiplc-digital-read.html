@@ -7,18 +7,18 @@
 	const rpiplcDigitalInputsRelay2 = [ "I2.0", "I2.1", "I2.2", "I2.3", "I2.4", "I2.5", ];
 
 	const rpiplcDigitalInputPins = {
-		"RPIPLC_19R": [...rpiplcDigitalInputsRelay0],
-		"RPIPLC_21": [...rpiplcDigitalInputsAnalog0],
-		"RPIPLC_38AR": [...rpiplcDigitalInputsAnalog0, ...rpiplcDigitalInputsRelay1],
-		"RPIPLC_38R": [...rpiplcDigitalInputsRelay0, ...rpiplcDigitalInputsRelay1],
-		"RPIPLC_42": [...rpiplcDigitalInputsAnalog0, ...rpiplcDigitalInputsAnalog1],
-		"RPIPLC_50RRA": [...rpiplcDigitalInputsRelay0, ...rpiplcDigitalInputsRelay1, ...rpiplcDigitalInputsAnalog2],
-		"RPIPLC_53ARR": [...rpiplcDigitalInputsAnalog0, ...rpiplcDigitalInputsRelay1, ...rpiplcDigitalInputsRelay2],
-		"RPIPLC_54ARA": [...rpiplcDigitalInputsAnalog0, ...rpiplcDigitalInputsRelay1, ...rpiplcDigitalInputsAnalog2],
-		"RPIPLC_57AAR": [...rpiplcDigitalInputsAnalog0, ...rpiplcDigitalInputsAnalog1, ...rpiplcDigitalInputsRelay2],
-		"RPIPLC_57R": [...rpiplcDigitalInputsRelay0, ...rpiplcDigitalInputsRelay1, ...rpiplcDigitalInputsRelay2],
-		"RPIPLC_58": [...rpiplcDigitalInputsAnalog0, ...rpiplcDigitalInputsAnalog1, ...rpiplcDigitalInputsAnalog2],
-		"CUSTOM": Array.from(new Set(Object.values([...rpiplcDigitalInputsAnalog0, ...rpiplcDigitalInputsAnalog1, ...rpiplcDigitalInputsAnalog2, ...rpiplcDigitalInputsRelay0, ...rpiplcDigitalInputsRelay1, ...rpiplcDigitalInputsRelay2]).flat())),
+		"RPIPLC_19R": ["Message passed", ...rpiplcDigitalInputsRelay0],
+		"RPIPLC_21": ["Message passed", ...rpiplcDigitalInputsAnalog0],
+		"RPIPLC_38AR": ["Message passed", ...rpiplcDigitalInputsAnalog0, ...rpiplcDigitalInputsRelay1],
+		"RPIPLC_38R": ["Message passed", ...rpiplcDigitalInputsRelay0, ...rpiplcDigitalInputsRelay1],
+		"RPIPLC_42": ["Message passed", ...rpiplcDigitalInputsAnalog0, ...rpiplcDigitalInputsAnalog1],
+		"RPIPLC_50RRA": ["Message passed", ...rpiplcDigitalInputsRelay0, ...rpiplcDigitalInputsRelay1, ...rpiplcDigitalInputsAnalog2],
+		"RPIPLC_53ARR": ["Message passed", ...rpiplcDigitalInputsAnalog0, ...rpiplcDigitalInputsRelay1, ...rpiplcDigitalInputsRelay2],
+		"RPIPLC_54ARA": ["Message passed", ...rpiplcDigitalInputsAnalog0, ...rpiplcDigitalInputsRelay1, ...rpiplcDigitalInputsAnalog2],
+		"RPIPLC_57AAR": ["Message passed", ...rpiplcDigitalInputsAnalog0, ...rpiplcDigitalInputsAnalog1, ...rpiplcDigitalInputsRelay2],
+		"RPIPLC_57R": ["Message passed", ...rpiplcDigitalInputsRelay0, ...rpiplcDigitalInputsRelay1, ...rpiplcDigitalInputsRelay2],
+		"RPIPLC_58": ["Message passed", ...rpiplcDigitalInputsAnalog0, ...rpiplcDigitalInputsAnalog1, ...rpiplcDigitalInputsAnalog2],
+		"CUSTOM": Array.from(new Set(Object.values(["Message passed", ...rpiplcDigitalInputsAnalog0, ...rpiplcDigitalInputsAnalog1, ...rpiplcDigitalInputsAnalog2, ...rpiplcDigitalInputsRelay0, ...rpiplcDigitalInputsRelay1, ...rpiplcDigitalInputsRelay2]).flat())),
 	};
 
 	RED.nodes.registerType("rpiplc-digital-read", {

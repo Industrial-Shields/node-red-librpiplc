@@ -6,6 +6,13 @@ module.exports = function(RED) {
 
 		this.on("input", msg => {
 			let pin = config.pin;
+			if (pin == "Message passed") {
+				pin = msg.pin
+				if (!pin) {
+					throw new Error("Pin was not passed by message");
+				}
+			}
+
 			let value = 0;
 			if (config.value != '') {
 				value = parseInt(config.value) || 0;
@@ -22,7 +29,7 @@ module.exports = function(RED) {
 					msg.payload = this.rpiplc.instance.analogWrite(pin, value);
 				}
 				catch {
-					throw new Error(`Pin ${config.pin} is not available for the current configuration (currently ${this.rpiplc.version}/${this.rpiplc.model})`);
+					throw new Error(`Pin ${pin} is not available for the current configuration (currently ${this.rpiplc.version}/${this.rpiplc.model})`);
 				}
 				this.send(msg);
 			}

@@ -6,6 +6,12 @@ module.exports = function(RED) {
 
 		this.on("input", msg => {
 			let pin = config.pin;
+			if (pin == "Message passed") {
+				pin = msg.pin
+				if (!pin) {
+					throw new Error("Pin was not passed by message");
+				}
+			}
 
 			if (this.rpiplc && pin) {
 				if (!this.rpiplc.instance) {
