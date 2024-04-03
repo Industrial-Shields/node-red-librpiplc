@@ -19,6 +19,7 @@ module.exports = function(RED) {
 				}
 
 				msg.payload = this.rpiplc.instance.analogRead(pin);
+				msg.rc = 0;
 				this.send(msg);
 			}
 		});

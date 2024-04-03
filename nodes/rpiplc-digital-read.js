@@ -24,6 +24,7 @@ module.exports = function(RED) {
 				catch {
 					throw new Error(`Pin ${pin} is not valid for this configuration`)
 				}
+				msg.rc = 0;
 				this.send(msg);
 			}
 		});

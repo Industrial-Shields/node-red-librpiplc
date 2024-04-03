@@ -26,7 +26,7 @@ module.exports = function(RED) {
 				}
 
 				try {
-					msg.payload = this.rpiplc.instance.analogWrite(pin, value);
+					msg.rc = this.rpiplc.instance.analogWrite(pin, value);
 				}
 				catch {
 					throw new Error(`Pin ${pin} is not available for the current configuration (currently ${this.rpiplc.version}/${this.rpiplc.model})`);
