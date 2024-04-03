@@ -17,7 +17,14 @@ module.exports = function(RED) {
 				if (!this.rpiplc.instance) {
 					throw new Error("RPIPLC instance not defined. Please use rpiplc set config node");
 				}
-				this.rpiplc.instance.analogWrite(pin, value);
+
+				try {
+					msg.payload = this.rpiplc.instance.analogWrite(pin, value);
+				}
+				catch {
+					throw new Error(`Pin ${config.pin} is not available for the current configuration (currently ${this.rpiplc.version}/${this.rpiplc.model})`);
+				}
+				this.send(msg);
 			}
 		});
 

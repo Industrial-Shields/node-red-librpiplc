@@ -11,7 +11,13 @@ module.exports = function(RED) {
 				if (!this.rpiplc.instance) {
 					throw new Error("RPIPLC instance not defined. Please use rpiplc set config node");
 				}
-				msg.payload = this.rpiplc.instance.digitalRead(pin);
+
+				try {
+					msg.payload = this.rpiplc.instance.digitalRead(pin);
+				}
+				catch {
+					throw new Error(`Pin ${pin} is not valid for this configuration`)
+				}
 				this.send(msg);
 			}
 		});

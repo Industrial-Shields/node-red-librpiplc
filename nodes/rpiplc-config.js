@@ -10,7 +10,12 @@ module.exports = function(RED) {
 		this.model = config.model;
 
 		if (!this.isCustom) {
-			this.instance = rpiplc(this.version, this.model);
+			try {
+				this.instance = rpiplc(this.version, this.model);
+			}
+			catch (e) {
+				throw new Error(`Error while initialising rpiplc instance: ${e}`);
+			}
 		}
 	}
 

@@ -11,7 +11,15 @@ module.exports = function(RED) {
 				throw new Error("The given PLC configuration is NOT custom");
 			}
 
-			this.rpiplc.instance = rpiplc(msg.version, msg.model);
+			try {
+				this.rpiplc.instance = rpiplc(msg.version, msg.model);
+				this.rpiplc.version = msg.version;
+				this.rpiplc.model = msg.model;
+			}
+			catch (e) {
+				throw new Error(`Unable to initialise the rpiplc instance: ${e.message}`);
+			}
+
 			if (this.rpiplc.instance) {
 				msg.payload = 0;
 			}
