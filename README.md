@@ -10,6 +10,9 @@
 <a href="https://www.npmjs.com/package/@industrial-shields/node-red-librpiplc"><img title="npm version" src="https://badgen.net/npm/dt/@industrial-shields/node-red-librpiplc"></a>
 
 
+## Licensing
+This library is licensed under the LGPL-3.0-or-later. The test programs are licensed under the GPL-3.0-or-later.
+
 
 ## Prerequisites
 
