@@ -1,0 +1,738 @@
+[
+    {
+        "id": "8b9cf6a4deb6c86d",
+        "type": "tab",
+        "label": "Select",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "5ffea12bf4fbcfe1",
+        "type": "tab",
+        "label": "Write Digital Loop",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "a02918142b1380f8",
+        "type": "rpiplc-config",
+        "isCustom": true,
+        "version": "CUSTOM",
+        "model": "CUSTOM",
+        "name": ""
+    },
+    {
+        "id": "999eb10526995e4f",
+        "type": "rpiplc-set-config",
+        "z": "8b9cf6a4deb6c86d",
+        "rpiplc": "a02918142b1380f8",
+        "name": "",
+        "x": 280,
+        "y": 120,
+        "wires": [
+            [
+                "1d259b40e8648016",
+                "7b43d59765e0642b"
+            ]
+        ]
+    },
+    {
+        "id": "629065aa76aaa754",
+        "type": "inject",
+        "z": "8b9cf6a4deb6c86d",
+        "name": "V5 19R",
+        "props": [
+            {
+                "p": "version",
+                "v": "RPIPLC_V5",
+                "vt": "str"
+            },
+            {
+                "p": "model",
+                "v": "RPIPLC_19R",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 90,
+        "y": 80,
+        "wires": [
+            [
+                "999eb10526995e4f"
+            ]
+        ]
+    },
+    {
+        "id": "3d26114afaffcff9",
+        "type": "inject",
+        "z": "8b9cf6a4deb6c86d",
+        "name": "V5 21",
+        "props": [
+            {
+                "p": "version",
+                "v": "RPIPLC_V5",
+                "vt": "str"
+            },
+            {
+                "p": "model",
+                "v": "RPIPLC_21",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 90,
+        "y": 120,
+        "wires": [
+            [
+                "999eb10526995e4f"
+            ]
+        ]
+    },
+    {
+        "id": "6d22f4be7c71c550",
+        "type": "inject",
+        "z": "8b9cf6a4deb6c86d",
+        "name": "Invalid",
+        "props": [
+            {
+                "p": "version",
+                "v": "RPIPLC_V",
+                "vt": "str"
+            },
+            {
+                "p": "model",
+                "v": "RPIPLC_",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 90,
+        "y": 160,
+        "wires": [
+            [
+                "999eb10526995e4f"
+            ]
+        ]
+    },
+    {
+        "id": "1d259b40e8648016",
+        "type": "switch",
+        "z": "8b9cf6a4deb6c86d",
+        "name": "If initialised",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "0",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 470,
+        "y": 120,
+        "wires": [
+            [
+                "797ff3f75afc1fc9"
+            ]
+        ]
+    },
+    {
+        "id": "697c820ecddb4356",
+        "type": "join",
+        "z": "8b9cf6a4deb6c86d",
+        "name": "",
+        "mode": "auto",
+        "build": "merged",
+        "property": "",
+        "propertyType": "full",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": true,
+        "timeout": "",
+        "count": "2",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "num",
+        "reduceFixup": "",
+        "x": 510,
+        "y": 260,
+        "wires": [
+            [
+                "8e6d6dcd13880e34"
+            ]
+        ]
+    },
+    {
+        "id": "ba7f60553ad61bbf",
+        "type": "inject",
+        "z": "8b9cf6a4deb6c86d",
+        "name": "R0.1",
+        "props": [
+            {
+                "p": "pin",
+                "v": "R0.1",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 90,
+        "y": 320,
+        "wires": [
+            [
+                "d8b0e09e71df3e5b"
+            ]
+        ]
+    },
+    {
+        "id": "700c1cd4ee48e6e5",
+        "type": "inject",
+        "z": "8b9cf6a4deb6c86d",
+        "name": "Q0.0",
+        "props": [
+            {
+                "p": "pin",
+                "v": "Q0.0",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 90,
+        "y": 360,
+        "wires": [
+            [
+                "d8b0e09e71df3e5b"
+            ]
+        ]
+    },
+    {
+        "id": "797ff3f75afc1fc9",
+        "type": "change",
+        "z": "8b9cf6a4deb6c86d",
+        "name": "create msg.parts",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "0",
+                "tot": "num"
+            },
+            {
+                "t": "set",
+                "p": "parts.id",
+                "pt": "msg",
+                "to": "0",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "parts.type",
+                "pt": "msg",
+                "to": "number",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "parts.key",
+                "pt": "msg",
+                "to": "completed",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "parts.index",
+                "pt": "msg",
+                "to": "0",
+                "tot": "num"
+            },
+            {
+                "t": "set",
+                "p": "parts.count",
+                "pt": "msg",
+                "to": "2",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 670,
+        "y": 120,
+        "wires": [
+            [
+                "697c820ecddb4356"
+            ]
+        ]
+    },
+    {
+        "id": "d8b0e09e71df3e5b",
+        "type": "change",
+        "z": "8b9cf6a4deb6c86d",
+        "name": "create msg.parts",
+        "rules": [
+            {
+                "t": "set",
+                "p": "parts.id",
+                "pt": "msg",
+                "to": "0",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "parts.type",
+                "pt": "msg",
+                "to": "string",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "parts.key",
+                "pt": "msg",
+                "to": "pin",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "parts.index",
+                "pt": "msg",
+                "to": "1",
+                "tot": "num"
+            },
+            {
+                "t": "set",
+                "p": "parts.count",
+                "pt": "msg",
+                "to": "2",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 290,
+        "y": 360,
+        "wires": [
+            [
+                "697c820ecddb4356"
+            ]
+        ]
+    },
+    {
+        "id": "8e6d6dcd13880e34",
+        "type": "change",
+        "z": "8b9cf6a4deb6c86d",
+        "name": "clean msg",
+        "rules": [
+            {
+                "t": "delete",
+                "p": "version",
+                "pt": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "model",
+                "pt": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "payload",
+                "pt": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "parts",
+                "pt": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 670,
+        "y": 260,
+        "wires": [
+            [
+                "0abab98222d9997f"
+            ]
+        ]
+    },
+    {
+        "id": "0abab98222d9997f",
+        "type": "link out",
+        "z": "8b9cf6a4deb6c86d",
+        "name": "link out 1",
+        "mode": "link",
+        "links": [
+            "b848b11aecee142d"
+        ],
+        "x": 795,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "8738986303022437",
+        "type": "inject",
+        "z": "8b9cf6a4deb6c86d",
+        "name": "Q0.0",
+        "props": [
+            {
+                "p": "pin",
+                "v": "Q0.10",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 90,
+        "y": 400,
+        "wires": [
+            [
+                "d8b0e09e71df3e5b"
+            ]
+        ]
+    },
+    {
+        "id": "7b43d59765e0642b",
+        "type": "debug",
+        "z": "8b9cf6a4deb6c86d",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 460,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "8152eda0f0cd9294",
+        "type": "loop",
+        "z": "5ffea12bf4fbcfe1",
+        "name": "",
+        "kind": "fcnt",
+        "count": "3",
+        "initial": "0",
+        "step": "1",
+        "condition": "",
+        "conditionType": "js",
+        "when": "before",
+        "enumeration": "enum",
+        "enumerationType": "msg",
+        "limit": "",
+        "loopPayload": "loop-orig",
+        "finalPayload": "final-count",
+        "x": 430,
+        "y": 180,
+        "wires": [
+            [
+                "e4b5a34773961d52"
+            ],
+            [
+                "2091c69ae233d8e9"
+            ]
+        ]
+    },
+    {
+        "id": "2091c69ae233d8e9",
+        "type": "rpiplc-digital-write",
+        "z": "5ffea12bf4fbcfe1",
+        "rpiplc": "a02918142b1380f8",
+        "pin": "Message passed",
+        "value": "0",
+        "name": "loop low",
+        "x": 180,
+        "y": 340,
+        "wires": [
+            [
+                "7100ba49b3d295cf",
+                "12540673e5104439"
+            ]
+        ]
+    },
+    {
+        "id": "7100ba49b3d295cf",
+        "type": "delay",
+        "z": "5ffea12bf4fbcfe1",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "1",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 340,
+        "y": 340,
+        "wires": [
+            [
+                "407f39d84f3a188e"
+            ]
+        ]
+    },
+    {
+        "id": "407f39d84f3a188e",
+        "type": "rpiplc-digital-write",
+        "z": "5ffea12bf4fbcfe1",
+        "rpiplc": "a02918142b1380f8",
+        "pin": "Message passed",
+        "value": "1",
+        "name": "loop high",
+        "x": 500,
+        "y": 340,
+        "wires": [
+            [
+                "be9144ee318b0f51",
+                "5640f80165368ec2"
+            ]
+        ]
+    },
+    {
+        "id": "be9144ee318b0f51",
+        "type": "delay",
+        "z": "5ffea12bf4fbcfe1",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "1",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 660,
+        "y": 340,
+        "wires": [
+            [
+                "8152eda0f0cd9294"
+            ]
+        ]
+    },
+    {
+        "id": "e4b5a34773961d52",
+        "type": "rpiplc-digital-write",
+        "z": "5ffea12bf4fbcfe1",
+        "rpiplc": "a02918142b1380f8",
+        "pin": "Message passed",
+        "value": "0",
+        "name": "",
+        "x": 660,
+        "y": 100,
+        "wires": [
+            [
+                "ea911a01b88f0209"
+            ]
+        ]
+    },
+    {
+        "id": "0d8bf3c3f9f0e370",
+        "type": "catch",
+        "z": "5ffea12bf4fbcfe1",
+        "name": "",
+        "scope": [],
+        "uncaught": false,
+        "x": 70,
+        "y": 180,
+        "wires": [
+            [
+                "0eb0abeecd1566b4"
+            ]
+        ]
+    },
+    {
+        "id": "0eb0abeecd1566b4",
+        "type": "change",
+        "z": "5ffea12bf4fbcfe1",
+        "name": "break",
+        "rules": [
+            {
+                "t": "set",
+                "p": "loop.command",
+                "pt": "msg",
+                "to": "break",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 210,
+        "y": 180,
+        "wires": [
+            [
+                "8152eda0f0cd9294"
+            ]
+        ]
+    },
+    {
+        "id": "ea911a01b88f0209",
+        "type": "debug",
+        "z": "5ffea12bf4fbcfe1",
+        "name": "last low debug",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "rc",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 700,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "12540673e5104439",
+        "type": "debug",
+        "z": "5ffea12bf4fbcfe1",
+        "name": "loop low debug",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "rc",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 360,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "5640f80165368ec2",
+        "type": "debug",
+        "z": "5ffea12bf4fbcfe1",
+        "name": "loop high debug",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "rc",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 680,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "b848b11aecee142d",
+        "type": "link in",
+        "z": "5ffea12bf4fbcfe1",
+        "name": "Loop Entry",
+        "links": [
+            "0abab98222d9997f"
+        ],
+        "x": 165,
+        "y": 100,
+        "wires": [
+            [
+                "8152eda0f0cd9294"
+            ]
+        ]
+    },
+    {
+        "id": "9e45b6ac66ec2e21",
+        "type": "rpiplc-analog-read",
+        "z": "5ffea12bf4fbcfe1",
+        "rpiplc": "a02918142b1380f8",
+        "pin": "Message passed",
+        "name": "",
+        "x": 160,
+        "y": 680,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "79e932b3a05b4b58",
+        "type": "rpiplc-analog-write",
+        "z": "5ffea12bf4fbcfe1",
+        "rpiplc": "a02918142b1380f8",
+        "pin": "Message passed",
+        "value": "",
+        "name": "",
+        "x": 320,
+        "y": 620,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1033e1447e083fa4",
+        "type": "rpiplc-analog-write",
+        "z": "5ffea12bf4fbcfe1",
+        "rpiplc": "a02918142b1380f8",
+        "pin": "Message passed",
+        "value": "",
+        "name": "",
+        "x": 460,
+        "y": 680,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a8413e863ef0eb39",
+        "type": "rpiplc-digital-write",
+        "z": "5ffea12bf4fbcfe1",
+        "rpiplc": "a02918142b1380f8",
+        "pin": "Message passed",
+        "value": "",
+        "name": "",
+        "x": 680,
+        "y": 620,
+        "wires": [
+            []
+        ]
+    }
+]

@@ -1,0 +1,408 @@
+[
+    {
+        "id": "ba0a011a500c28f4",
+        "type": "tab",
+        "label": "Individual Tests",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "b3c54b04566cc575",
+        "type": "inject",
+        "z": "ba0a011a500c28f4",
+        "name": "R0.1 HIGH",
+        "props": [
+            {
+                "p": "pin",
+                "v": "R0.1",
+                "vt": "str"
+            },
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "HIGH",
+        "payloadType": "str",
+        "x": 140,
+        "y": 60,
+        "wires": [
+            [
+                "9f0c7b0f9356bd03"
+            ]
+        ]
+    },
+    {
+        "id": "033ad4126aa185e1",
+        "type": "inject",
+        "z": "ba0a011a500c28f4",
+        "name": "R0.1 LOW",
+        "props": [
+            {
+                "p": "pin",
+                "v": "R0.1",
+                "vt": "str"
+            },
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "LOW",
+        "payloadType": "str",
+        "x": 140,
+        "y": 100,
+        "wires": [
+            [
+                "9f0c7b0f9356bd03"
+            ]
+        ]
+    },
+    {
+        "id": "2b200e1f3b90d086",
+        "type": "inject",
+        "z": "ba0a011a500c28f4",
+        "name": "R0.1 0",
+        "props": [
+            {
+                "p": "pin",
+                "v": "R0.1",
+                "vt": "str"
+            },
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "0",
+        "payloadType": "num",
+        "x": 150,
+        "y": 180,
+        "wires": [
+            [
+                "9f0c7b0f9356bd03"
+            ]
+        ]
+    },
+    {
+        "id": "9ccee4e63e7c6565",
+        "type": "inject",
+        "z": "ba0a011a500c28f4",
+        "name": "R0.1 1",
+        "props": [
+            {
+                "p": "pin",
+                "v": "R0.1",
+                "vt": "str"
+            },
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "1",
+        "payloadType": "num",
+        "x": 150,
+        "y": 140,
+        "wires": [
+            [
+                "9f0c7b0f9356bd03"
+            ]
+        ]
+    },
+    {
+        "id": "9f0c7b0f9356bd03",
+        "type": "rpiplc-digital-write",
+        "z": "ba0a011a500c28f4",
+        "rpiplc": "0973024e510127b0",
+        "pin": "Message passed",
+        "value": "",
+        "name": "",
+        "x": 380,
+        "y": 60,
+        "wires": [
+            [
+                "60ec2ea848bb08f6"
+            ]
+        ]
+    },
+    {
+        "id": "60ec2ea848bb08f6",
+        "type": "debug",
+        "z": "ba0a011a500c28f4",
+        "name": "digital write result",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 630,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "34ef314605d0df78",
+        "type": "inject",
+        "z": "ba0a011a500c28f4",
+        "name": "I0.0",
+        "props": [
+            {
+                "p": "pin",
+                "v": "I0.0",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 150,
+        "y": 240,
+        "wires": [
+            [
+                "3961fef7b6eee672"
+            ]
+        ]
+    },
+    {
+        "id": "3961fef7b6eee672",
+        "type": "rpiplc-digital-read",
+        "z": "ba0a011a500c28f4",
+        "rpiplc": "0973024e510127b0",
+        "pin": "Message passed",
+        "name": "",
+        "x": 380,
+        "y": 240,
+        "wires": [
+            [
+                "0f71395410625b8e"
+            ]
+        ]
+    },
+    {
+        "id": "0f71395410625b8e",
+        "type": "debug",
+        "z": "ba0a011a500c28f4",
+        "name": "digital read",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "{\"rc\": msg.rc, \"payload\": msg.payload}",
+        "targetType": "jsonata",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 610,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "0f360e1ddaf51322",
+        "type": "inject",
+        "z": "ba0a011a500c28f4",
+        "name": "I0.2",
+        "props": [
+            {
+                "p": "pin",
+                "v": "I0.2",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 150,
+        "y": 300,
+        "wires": [
+            [
+                "51c8a057aa8b943b"
+            ]
+        ]
+    },
+    {
+        "id": "1c4442e3db33a163",
+        "type": "debug",
+        "z": "ba0a011a500c28f4",
+        "name": "analog read",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "{\"rc\": msg.rc, \"payload\": msg.payload}",
+        "targetType": "jsonata",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 610,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "51c8a057aa8b943b",
+        "type": "rpiplc-analog-read",
+        "z": "ba0a011a500c28f4",
+        "rpiplc": "0973024e510127b0",
+        "pin": "Message passed",
+        "name": "",
+        "x": 380,
+        "y": 300,
+        "wires": [
+            [
+                "1c4442e3db33a163"
+            ]
+        ]
+    },
+    {
+        "id": "86fb8d899406ad7c",
+        "type": "inject",
+        "z": "ba0a011a500c28f4",
+        "name": "A0.0 4095",
+        "props": [
+            {
+                "p": "pin",
+                "v": "A0.0",
+                "vt": "str"
+            },
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "4095",
+        "payloadType": "num",
+        "x": 140,
+        "y": 360,
+        "wires": [
+            [
+                "3dc8a677a95c6e26"
+            ]
+        ]
+    },
+    {
+        "id": "c95fce22c36b7296",
+        "type": "debug",
+        "z": "ba0a011a500c28f4",
+        "name": "analog write result",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "rc",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 630,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "3dc8a677a95c6e26",
+        "type": "rpiplc-analog-write",
+        "z": "ba0a011a500c28f4",
+        "rpiplc": "0973024e510127b0",
+        "pin": "Message passed",
+        "value": "",
+        "name": "",
+        "x": 380,
+        "y": 400,
+        "wires": [
+            [
+                "c95fce22c36b7296"
+            ]
+        ]
+    },
+    {
+        "id": "65c3698968608b44",
+        "type": "inject",
+        "z": "ba0a011a500c28f4",
+        "name": "A0.0 500",
+        "props": [
+            {
+                "p": "pin",
+                "v": "A0.0",
+                "vt": "str"
+            },
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "500",
+        "payloadType": "num",
+        "x": 140,
+        "y": 400,
+        "wires": [
+            [
+                "3dc8a677a95c6e26"
+            ]
+        ]
+    },
+    {
+        "id": "158bd68713fca246",
+        "type": "inject",
+        "z": "ba0a011a500c28f4",
+        "name": "A0.0 0",
+        "props": [
+            {
+                "p": "pin",
+                "v": "A0.0",
+                "vt": "str"
+            },
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "0",
+        "payloadType": "num",
+        "x": 150,
+        "y": 440,
+        "wires": [
+            [
+                "3dc8a677a95c6e26"
+            ]
+        ]
+    },
+    {
+        "id": "0973024e510127b0",
+        "type": "rpiplc-config",
+        "isCustom": false,
+        "version": "RPIPLC_V5",
+        "model": "RPIPLC_19R",
+        "name": ""
+    }
+]
