@@ -42,11 +42,11 @@
         "id": "629065aa76aaa754",
         "type": "inject",
         "z": "8b9cf6a4deb6c86d",
-        "name": "V5 19R",
+        "name": "V6 19R",
         "props": [
             {
                 "p": "version",
-                "v": "RPIPLC_V5",
+                "v": "RPIPLC_V6",
                 "vt": "str"
             },
             {
@@ -72,11 +72,11 @@
         "id": "3d26114afaffcff9",
         "type": "inject",
         "z": "8b9cf6a4deb6c86d",
-        "name": "V5 21",
+        "name": "V6 21",
         "props": [
             {
                 "p": "version",
-                "v": "RPIPLC_V5",
+                "v": "RPIPLC_V6",
                 "vt": "str"
             },
             {
