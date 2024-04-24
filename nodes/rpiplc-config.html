@@ -39,8 +39,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 			function updateIsCustom() {
 				this.isCustom = $("#node-config-input-isCustom").is(':checked');
 				if (!this.isCustom) {
-					$('#node-config-input-version').val('RPIPLC_V6');
-					$('#node-config-input-model').val('RPIPLC_21');
+					if ($('#node-config-input-version').val() === "CUSTOM") {
+						$('#node-config-input-version').val('RPIPLC_V6');
+						$('#node-config-input-model').val('RPIPLC_21');
+					}
 					$("#hide-show-div").show();
 				}
 				else {
