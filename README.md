@@ -29,9 +29,9 @@ You must first install the [librpiplc](https://github.com/Industrial-Shields/lib
 
 To install the stable version use the Node-RED Menu -> Manage palette -> Install option, and search for `@industrial-shields/node-red-librpiplc`. Or you can also run the following command in your Node-RED user directory, typically ~/.node-red:
 ```
-npm install @industrial-shields/librpiplc@<tagname>
+npm install @industrial-shields/node-red-librpiplc@<tag-version>
 ```
-Where `<tagname>` is the version you wish to download. Before this unification, you had to choose between versions 1.X.X (for V3 PLCs) or 2.X.X (for V4 PLCs). As of 3.X.X this library is compatible with our PLCs regardless of it's version.
+Where `<tag-version>` is the version number you wish to download. Before this unification, you had to choose between versions 1.X.X (for V3 PLCs) or 2.X.X (for V4 PLCs). As of 3.X.X, this library is compatible with all our Raspberry PLCs regardless of it's version. At the moment of writing, this library is available to Raspberry PLCs V6, V4 and V3.
 You can check the available versions in here: https://github.com/Industrial-Shields/node-red-librpiplc/tags
 
 
