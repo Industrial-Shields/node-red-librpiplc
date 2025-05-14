@@ -35,6 +35,7 @@ module.exports = function(RED) {
 				if (rc != 0 && rc != 1) {
 					throw new Error(`Error while initialising rpiplc instance: rc = ${rc}`);
 				}
+				this.initializedPins = new Set();
 			}
 			catch (e) {
 				throw new Error(`Error while initialising rpiplc instance: ${e}`);
