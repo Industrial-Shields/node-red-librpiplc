@@ -31,6 +31,10 @@ module.exports = function(RED) {
 		if (!this.isCustom) {
 			try {
 				this.instance = rpiplc(this.version, this.model);
+				const rc = this.instance.rc;
+				if (rc != 0 && rc != 1) {
+					throw new Error(`Error while initialising rpiplc instance: rc = ${rc}`);
+				}
 			}
 			catch (e) {
 				throw new Error(`Error while initialising rpiplc instance: ${e}`);
