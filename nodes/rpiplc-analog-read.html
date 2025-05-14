@@ -24,20 +24,27 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 	const rpiplcAnalogInputsRelay0 = [ "I0.2", "I0.3", "I0.4", "I0.5", ];
 	const rpiplcAnalogInputsRelay1 = [ "I1.2", "I1.3", "I1.4", "I1.5", ];
 	const rpiplcAnalogInputsRelay2 = [ "I2.2", "I2.3", "I2.4", "I2.5", ];
-
 	const rpiplcAnalogInputPins = {
-		"RPIPLC_19R": ["Message passed", ...rpiplcAnalogInputsRelay0],
-		"RPIPLC_21": ["Message passed", ...rpiplcAnalogInputsAnalog0],
-		"RPIPLC_38AR": ["Message passed", ...rpiplcAnalogInputsAnalog0, ...rpiplcAnalogInputsRelay1],
-		"RPIPLC_38R": ["Message passed", ...rpiplcAnalogInputsRelay0, ...rpiplcAnalogInputsRelay1],
-		"RPIPLC_42": ["Message passed", ...rpiplcAnalogInputsAnalog0, ...rpiplcAnalogInputsAnalog1],
-		"RPIPLC_50RRA": ["Message passed", ...rpiplcAnalogInputsRelay0, ...rpiplcAnalogInputsRelay1, ...rpiplcAnalogInputsAnalog2],
-		"RPIPLC_53ARR": ["Message passed", ...rpiplcAnalogInputsAnalog0, ...rpiplcAnalogInputsRelay1, ...rpiplcAnalogInputsRelay2],
-		"RPIPLC_54ARA": ["Message passed", ...rpiplcAnalogInputsAnalog0, ...rpiplcAnalogInputsRelay1, ...rpiplcAnalogInputsAnalog2],
-		"RPIPLC_57AAR": ["Message passed", ...rpiplcAnalogInputsAnalog0, ...rpiplcAnalogInputsAnalog1, ...rpiplcAnalogInputsRelay2],
-		"RPIPLC_57R": ["Message passed", ...rpiplcAnalogInputsRelay0, ...rpiplcAnalogInputsRelay1, ...rpiplcAnalogInputsRelay2],
-		"RPIPLC_58": ["Message passed", ...rpiplcAnalogInputsAnalog0, ...rpiplcAnalogInputsAnalog1, ...rpiplcAnalogInputsAnalog2],
-		"CUSTOM": Array.from(new Set(Object.values(["Message passed", ...rpiplcAnalogInputsAnalog0, ...rpiplcAnalogInputsAnalog1, ...rpiplcAnalogInputsAnalog2, ...rpiplcAnalogInputsRelay0, ...rpiplcAnalogInputsRelay1, ...rpiplcAnalogInputsRelay2]).flat())),
+		"RPIPLC_19R": [...rpiplcAnalogInputsRelay0, "Message passed"],
+		"RPIPLC_21": [...rpiplcAnalogInputsAnalog0, "Message passed"],
+		"RPIPLC_38AR": [...rpiplcAnalogInputsAnalog0, ...rpiplcAnalogInputsRelay1, "Message passed"],
+		"RPIPLC_38R": [...rpiplcAnalogInputsRelay0, ...rpiplcAnalogInputsRelay1, "Message passed"],
+		"RPIPLC_42": [...rpiplcAnalogInputsAnalog0, ...rpiplcAnalogInputsAnalog1, "Message passed"],
+		"RPIPLC_50RRA": [...rpiplcAnalogInputsRelay0, ...rpiplcAnalogInputsRelay1, ...rpiplcAnalogInputsAnalog2, "Message passed"],
+		"RPIPLC_53ARR": [...rpiplcAnalogInputsAnalog0, ...rpiplcAnalogInputsRelay1, ...rpiplcAnalogInputsRelay2, "Message passed"],
+		"RPIPLC_54ARA": [...rpiplcAnalogInputsAnalog0, ...rpiplcAnalogInputsRelay1, ...rpiplcAnalogInputsAnalog2, "Message passed"],
+		"RPIPLC_57AAR": [...rpiplcAnalogInputsAnalog0, ...rpiplcAnalogInputsAnalog1, ...rpiplcAnalogInputsRelay2, "Message passed"],
+		"RPIPLC_57R": [...rpiplcAnalogInputsRelay0, ...rpiplcAnalogInputsRelay1, ...rpiplcAnalogInputsRelay2, "Message passed"],
+		"RPIPLC_58": [...rpiplcAnalogInputsAnalog0, ...rpiplcAnalogInputsAnalog1, ...rpiplcAnalogInputsAnalog2, "Message passed"]
+	};
+
+	const pinsMap = {
+		"RPIPLC_V6": rpiplcAnalogInputPins,
+		"RPIPLC_V4": rpiplcAnalogInputPins,
+		"RPIPLC_V3": rpiplcAnalogInputPins,
+		"UPSAFEPI_V6": {"UPSAFEPI": []},
+		"GATEBERRY_V9": {"GATEBERRY": []},
+		"TOUCHBERRY_PI_V1": {"TOUCHBERRY_PI": ["I0_4_20", "I1_4_20", "I0", "I1", "Message passed"]},
 	};
 
 	RED.nodes.registerType("rpiplc-analog-read", {
@@ -45,8 +52,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 		color: "#C7E9C0",
 
 		defaults: {
-			rpiplc: { value: "", type: "rpiplc-config", required: true },
-			pin: { value: "", required: true },
+			rpiplc: { value: null, type: "rpiplc-config", required: true },
+			pin: { value: null, required: true },
 			name: { value: "" },
 		},
 
@@ -63,51 +70,74 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 			if (this.pin) {
 				return `read ${this.pin}`;
 			}
-			return "analog read";
+			return "invalid analog read";
 		},
 		paletteLabel: function() {
 			return this.name || "analog read";
 		},
 
 		oneditprepare: function() {
-			const node = this;
+			const analogReadNode = this;
 
 			$("#node-input-rpiplc").change(function() {
+				const hideDiv = $("#hide-node-input-pin");
 				const pinSelect = $("#node-input-pin");
-				if (!pinSelect) {
+
+				function hidePins() {
+					hideDiv.hide();
+					pinSelect.empty();
+					pinSelect.append($("<option></option>").val(null).text("You found a bug!"));
+				}
+
+				const configId = $(this).val();
+				if (!configId) {
+					hidePins();
 					return;
 				}
-				let pins = [];
-				const configId = $(this).val();
-				if (configId) {
-					const configNode = RED.nodes.node(configId);
-					if (configNode) {
-						pins = rpiplcAnalogInputPins[configNode.model];
+				const configNode = RED.nodes.node(configId);
+				if (!configNode) {
+					hidePins();
+					return;
+				}
 
-						if (!Array.isArray(pins)) {
-							pins = [];
-						}
+				const version = configNode.version;
+				const model = configNode.model;
+				if (version === "CUSTOM") {
+					hidePins();
+					return;
+				}
+
+				const pinsArray = pinsMap[version][model];
+				if (pinsArray.length !== 0) {
+					const actualValue = pinSelect.val() || analogReadNode.pin;
+					pinSelect.empty();
+					pinsArray.forEach((pin) => {
+						pinSelect.append($("<option></option>").val(pin).text(pin))
+					});
+					// Replace if some pin was already set in the node
+					if (pinsArray.includes(actualValue)) {
+						pinSelect.val(actualValue);
 					}
+					// Clean the error border if present
+					if (pinSelect.hasClass("input-error")) {
+						pinSelect.removeClass("input-error");
+					}
+					hideDiv.show();
 				}
-				const value = pinSelect.val() || node.pin;
-
-				pinSelect.empty();
-				pins.forEach((pin) => pinSelect.append($("<option></option>").val(pin).text(pin)));
-
-				if (pins.includes(value)) {
-					pinSelect.val(value);
+				else {
+					hidePins();
 				}
-			}).change();
+			});
 		},
 	});
 </script>
 
 <script type="text/x-red" data-template-name="rpiplc-analog-read">
 	<div class="form-row">
-		<label for="node-input-rpiplc">RPIPLC</label>
-		<input type="text" id="node-input-rpiplc" placeholder="RPIPLC">
+		<label for="node-input-rpiplc"><i class="fa fa-cog"></i> PLC type</label>
+		<input type="text" id="node-input-rpiplc" placeholder="PLC type">
 	</div>
-	<div class="form-row">
+	<div class="form-row" id="hide-node-input-pin">
 		<label for="node-input-pin"><i class="fa fa-circle-o"></i> Input</label>
 		<select id="node-input-pin" placeholder="Select an input"></select>
 	</div>

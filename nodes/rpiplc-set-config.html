@@ -34,19 +34,19 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 		align: "left",
 		labelStyle: "node_label",
 		label: function() {
-			return this.name || "rpiplc set config";
+			return this.name || "plc set config";
 		},
 
 		paletteLabel: function() {
-			return "rpiplc set config";
+			return "plc set config";
 		},
 	});
 </script>
 
 <script type="text/x-red" data-template-name="rpiplc-set-config">
   	<div class="form-row">
-		<label for="node-input-rpiplc">RPIPLC</label>
-		<input type="text" id="node-input-rpiplc" placeholder="RPIPLC">
+		<label for="node-input-rpiplc"><i class="fa fa-cog"></i> PLC type</label>
+		<input type="text" id="node-input-rpiplc" placeholder="PLC type">
 	</div>
 	<div class="form-row">
 		<label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
