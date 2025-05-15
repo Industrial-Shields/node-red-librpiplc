@@ -25,19 +25,58 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 	const rpiplcDigitalInputsRelay1 = [ "I1.0", "I1.1", "I1.2", "I1.3", "I1.4", "I1.5", ];
 	const rpiplcDigitalInputsRelay2 = [ "I2.0", "I2.1", "I2.2", "I2.3", "I2.4", "I2.5", ];
 
-	const rpiplcDigitalInputPins = {
-		"RPIPLC_19R": ["Message passed", ...rpiplcDigitalInputsRelay0],
-		"RPIPLC_21": ["Message passed", ...rpiplcDigitalInputsAnalog0],
-		"RPIPLC_38AR": ["Message passed", ...rpiplcDigitalInputsAnalog0, ...rpiplcDigitalInputsRelay1],
-		"RPIPLC_38R": ["Message passed", ...rpiplcDigitalInputsRelay0, ...rpiplcDigitalInputsRelay1],
-		"RPIPLC_42": ["Message passed", ...rpiplcDigitalInputsAnalog0, ...rpiplcDigitalInputsAnalog1],
-		"RPIPLC_50RRA": ["Message passed", ...rpiplcDigitalInputsRelay0, ...rpiplcDigitalInputsRelay1, ...rpiplcDigitalInputsAnalog2],
-		"RPIPLC_53ARR": ["Message passed", ...rpiplcDigitalInputsAnalog0, ...rpiplcDigitalInputsRelay1, ...rpiplcDigitalInputsRelay2],
-		"RPIPLC_54ARA": ["Message passed", ...rpiplcDigitalInputsAnalog0, ...rpiplcDigitalInputsRelay1, ...rpiplcDigitalInputsAnalog2],
-		"RPIPLC_57AAR": ["Message passed", ...rpiplcDigitalInputsAnalog0, ...rpiplcDigitalInputsAnalog1, ...rpiplcDigitalInputsRelay2],
-		"RPIPLC_57R": ["Message passed", ...rpiplcDigitalInputsRelay0, ...rpiplcDigitalInputsRelay1, ...rpiplcDigitalInputsRelay2],
-		"RPIPLC_58": ["Message passed", ...rpiplcDigitalInputsAnalog0, ...rpiplcDigitalInputsAnalog1, ...rpiplcDigitalInputsAnalog2],
-		"CUSTOM": Array.from(new Set(Object.values(["Message passed", ...rpiplcDigitalInputsAnalog0, ...rpiplcDigitalInputsAnalog1, ...rpiplcDigitalInputsAnalog2, ...rpiplcDigitalInputsRelay0, ...rpiplcDigitalInputsRelay1, ...rpiplcDigitalInputsRelay2]).flat())),
+	const rpiplcV6ExtraDigitalInputs = ["PIN8", "OPTO_IN_1", "OPTO_IN_2", "INT31"];
+	const rpiplcV6DigitalInputPins = {
+		"RPIPLC_19R": [...rpiplcV6ExtraDigitalInputs, ...rpiplcDigitalInputsRelay0],
+		"RPIPLC_21": [...rpiplcV6ExtraDigitalInputs, ...rpiplcDigitalInputsAnalog0],
+		"RPIPLC_38AR": [...rpiplcV6ExtraDigitalInputs, ...rpiplcDigitalInputsAnalog0, ...rpiplcDigitalInputsRelay1],
+		"RPIPLC_38R": [...rpiplcV6ExtraDigitalInputs, ...rpiplcDigitalInputsRelay0, ...rpiplcDigitalInputsRelay1],
+		"RPIPLC_42": [...rpiplcV6ExtraDigitalInputs, ...rpiplcDigitalInputsAnalog0, ...rpiplcDigitalInputsAnalog1],
+		"RPIPLC_50RRA": [...rpiplcV6ExtraDigitalInputs, ...rpiplcDigitalInputsRelay0, ...rpiplcDigitalInputsRelay1, ...rpiplcDigitalInputsAnalog2],
+		"RPIPLC_53ARR": [...rpiplcV6ExtraDigitalInputs, ...rpiplcDigitalInputsAnalog0, ...rpiplcDigitalInputsRelay1, ...rpiplcDigitalInputsRelay2],
+		"RPIPLC_54ARA": [...rpiplcV6ExtraDigitalInputs, ...rpiplcDigitalInputsAnalog0, ...rpiplcDigitalInputsRelay1, ...rpiplcDigitalInputsAnalog2],
+		"RPIPLC_57AAR": [...rpiplcV6ExtraDigitalInputs, ...rpiplcDigitalInputsAnalog0, ...rpiplcDigitalInputsAnalog1, ...rpiplcDigitalInputsRelay2],
+		"RPIPLC_57R": [...rpiplcV6ExtraDigitalInputs, ...rpiplcDigitalInputsRelay0, ...rpiplcDigitalInputsRelay1, ...rpiplcDigitalInputsRelay2],
+		"RPIPLC_58": [...rpiplcV6ExtraDigitalInputs, ...rpiplcDigitalInputsAnalog0, ...rpiplcDigitalInputsAnalog1, ...rpiplcDigitalInputsAnalog2]
+	};
+
+	const rpiplcV4ExtraDigitalInputs = ["PIN8"];
+	const rpiplcV4DigitalInputPins = {
+		"RPIPLC_19R": [...rpiplcV4ExtraDigitalInputs, ...rpiplcDigitalInputsRelay0],
+		"RPIPLC_21": [...rpiplcV4ExtraDigitalInputs, ...rpiplcDigitalInputsAnalog0],
+		"RPIPLC_38AR": [...rpiplcV4ExtraDigitalInputs, ...rpiplcDigitalInputsAnalog0, ...rpiplcDigitalInputsRelay1],
+		"RPIPLC_38R": [...rpiplcV4ExtraDigitalInputs, ...rpiplcDigitalInputsRelay0, ...rpiplcDigitalInputsRelay1],
+		"RPIPLC_42": [...rpiplcV4ExtraDigitalInputs, ...rpiplcDigitalInputsAnalog0, ...rpiplcDigitalInputsAnalog1],
+		"RPIPLC_50RRA": [...rpiplcV4ExtraDigitalInputs, ...rpiplcDigitalInputsRelay0, ...rpiplcDigitalInputsRelay1, ...rpiplcDigitalInputsAnalog2],
+		"RPIPLC_53ARR": [...rpiplcV4ExtraDigitalInputs, ...rpiplcDigitalInputsAnalog0, ...rpiplcDigitalInputsRelay1, ...rpiplcDigitalInputsRelay2],
+		"RPIPLC_54ARA": [...rpiplcV4ExtraDigitalInputs, ...rpiplcDigitalInputsAnalog0, ...rpiplcDigitalInputsRelay1, ...rpiplcDigitalInputsAnalog2],
+		"RPIPLC_57AAR": [...rpiplcV4ExtraDigitalInputs, ...rpiplcDigitalInputsAnalog0, ...rpiplcDigitalInputsAnalog1, ...rpiplcDigitalInputsRelay2],
+		"RPIPLC_57R": [...rpiplcV4ExtraDigitalInputs, ...rpiplcDigitalInputsRelay0, ...rpiplcDigitalInputsRelay1, ...rpiplcDigitalInputsRelay2],
+		"RPIPLC_58": [...rpiplcV4ExtraDigitalInputs, ...rpiplcDigitalInputsAnalog0, ...rpiplcDigitalInputsAnalog1, ...rpiplcDigitalInputsAnalog2]
+	};
+
+	const rpiplcV3ExtraDigitalInputs = [];
+	const rpiplcV3DigitalInputPins = {
+		"RPIPLC_19R": [...rpiplcV3ExtraDigitalInputs, ...rpiplcDigitalInputsRelay0],
+		"RPIPLC_21": [...rpiplcV3ExtraDigitalInputs, ...rpiplcDigitalInputsAnalog0],
+		"RPIPLC_38AR": [...rpiplcV3ExtraDigitalInputs, ...rpiplcDigitalInputsAnalog0, ...rpiplcDigitalInputsRelay1],
+		"RPIPLC_38R": [...rpiplcV3ExtraDigitalInputs, ...rpiplcDigitalInputsRelay0, ...rpiplcDigitalInputsRelay1],
+		"RPIPLC_42": [...rpiplcV3ExtraDigitalInputs, ...rpiplcDigitalInputsAnalog0, ...rpiplcDigitalInputsAnalog1],
+		"RPIPLC_50RRA": [...rpiplcV3ExtraDigitalInputs, ...rpiplcDigitalInputsRelay0, ...rpiplcDigitalInputsRelay1, ...rpiplcDigitalInputsAnalog2],
+		"RPIPLC_53ARR": [...rpiplcV3ExtraDigitalInputs, ...rpiplcDigitalInputsAnalog0, ...rpiplcDigitalInputsRelay1, ...rpiplcDigitalInputsRelay2],
+		"RPIPLC_54ARA": [...rpiplcV3ExtraDigitalInputs, ...rpiplcDigitalInputsAnalog0, ...rpiplcDigitalInputsRelay1, ...rpiplcDigitalInputsAnalog2],
+		"RPIPLC_57AAR": [...rpiplcV3ExtraDigitalInputs, ...rpiplcDigitalInputsAnalog0, ...rpiplcDigitalInputsAnalog1, ...rpiplcDigitalInputsRelay2],
+		"RPIPLC_57R": [...rpiplcV3ExtraDigitalInputs, ...rpiplcDigitalInputsRelay0, ...rpiplcDigitalInputsRelay1, ...rpiplcDigitalInputsRelay2],
+		"RPIPLC_58": [...rpiplcV3ExtraDigitalInputs, ...rpiplcDigitalInputsAnalog0, ...rpiplcDigitalInputsAnalog1, ...rpiplcDigitalInputsAnalog2]
+	};
+
+	const pinsMapDigitalInputPins = {
+		"RPIPLC_V6": rpiplcV6DigitalInputPins,
+		"RPIPLC_V4": rpiplcV4DigitalInputPins,
+		"RPIPLC_V3": rpiplcV3DigitalInputPins,
+		"UPSAFEPI_V6": {"UPSAFEPI": []},
+		"GATEBERRY_V9": {"GATEBERRY": []},
+		"TOUCHBERRY_PI_V1": {"TOUCHBERRY_PI": ["I0_4_20", "I1_4_20", "I0", "I1", "I2", "I3", "I4", "CS0", "CS1"]},
 	};
 
 	RED.nodes.registerType("rpiplc-digital-read", {
@@ -45,8 +84,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 		color: "#C7E9C0",
 
 		defaults: {
-			rpiplc: { value: "", type: "rpiplc-config", required: true },
-			pin: { value: "", required: true},
+			rpiplc: { value: null, type: "rpiplc-config", required: true },
+			pin: { value: null, required: true },
 			name: { value: "" },
 		},
 
@@ -63,51 +102,76 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 			if (this.pin) {
 				return `read ${this.pin}`;
 			}
-			return "digital read";
+			return "invalid digital read";
 		},
 		paletteLabel: function() {
 			return this.name || "digital read";
 		},
 
 		oneditprepare: function() {
-			const node = this;
+			const digitalReadNode = this;
 
 			$("#node-input-rpiplc").change(function() {
+				const hideInputDiv = $("#hide-node-input-pin");
 				const pinSelect = $("#node-input-pin");
-				if (!pinSelect) {
+
+				function hidePins() {
+					hideInputDiv.hide();
+					pinSelect.empty();
+					pinSelect.append($("<option></option>").val(null).text("You found a bug!"));
+				}
+
+				const configId = $(this).val();
+				if (!configId) {
+					hidePins();
 					return;
 				}
-				let pins = [];
-				const configId = $(this).val();
-				if (configId) {
-					const configNode = RED.nodes.node(configId);
-					if (configNode) {
-						pins = rpiplcDigitalInputPins[configNode.model];
+				const configNode = RED.nodes.node(configId);
+				if (!configNode) {
+					hidePins();
+					return;
+				}
 
-						if (!Array.isArray(pins)) {
-							pins = [];
-						}
+				const version = configNode.version;
+				const model = configNode.model;
+				if (version === "CUSTOM") {
+					hidePins();
+					return;
+				}
+
+				const pinsArray = pinsMapDigitalInputPins[version][model];
+				if (pinsArray.length !== 0) {
+					const actualValue = pinSelect.val() || digitalReadNode.pin;
+					pinSelect.empty();
+					pinsArray.forEach((pin) => {
+						pinSelect.append($("<option></option>").val(pin).text(pin))
+					});
+					pinSelect.append($("<option></option>")
+						.val("Message passed").text("Message passed"))
+					// Replace if some pin was already set in the node
+					if (pinsArray.includes(actualValue) || actualValue === "Message passed") {
+						pinSelect.val(actualValue);
 					}
+					// Clean the error border if present
+					if (pinSelect.hasClass("input-error")) {
+						pinSelect.removeClass("input-error");
+					}
+					hideInputDiv.show();
 				}
-				const value = pinSelect.val() || node.pin;
-
-				pinSelect.empty();
-				pins.forEach((pin) => pinSelect.append($("<option></option>").val(pin).text(pin)));
-
-				if (pins.includes(value)) {
-					pinSelect.val(value);
+				else {
+					hidePins();
 				}
-			}).change();
+			});
 		},
 	});
 </script>
 
 <script type="text/x-red" data-template-name="rpiplc-digital-read">
 	<div class="form-row">
-		<label for="node-input-rpiplc">RPIPLC</label>
-		<input type="text" id="node-input-rpiplc" placeholder="RPIPLC">
+		<label for="node-input-rpiplc"><i class="fa fa-cog"></i> PLC type</label>
+		<input type="text" id="node-input-rpiplc" placeholder="PLC type">
 	</div>
-	<div class="form-row">
+	<div class="form-row" id="hide-node-input-pin">
 		<label for="node-input-pin"><i class="fa fa-circle-o"></i> Input</label>
 		<select id="node-input-pin" placeholder="Select an input"></select>
 	</div>
