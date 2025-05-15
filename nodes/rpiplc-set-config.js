@@ -40,7 +40,7 @@ module.exports = function(RED) {
 			}
 
 			if (this.rpiplc.instance) {
-				msg.payload = 0;
+				msg.payload = this.rpiplc.instance.rc;
 			}
 			else {
 				msg.payload = -1;
