@@ -117,7 +117,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 					pinSelect.append($("<option></option>")
 						.val("Message passed").text("Message passed"))
 					// Replace if some pin was already set in the node
-					if (pinsArray.includes(actualValue)) {
+					if (pinsArray.includes(actualValue) || actualValue === "Message passed") {
 						pinSelect.val(actualValue);
 					}
 					// Clean the error border if present
