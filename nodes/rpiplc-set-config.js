@@ -36,7 +36,7 @@ module.exports = function(RED) {
 				this.rpiplc.model = msg.model;
 			}
 			catch (e) {
-				throw new Error(`Unable to initialise the rpiplc instance: ${e.message}`);
+				throw new Error(`Unable to initialise the PLC instance: ${e.message}`);
 			}
 
 			if (this.rpiplc.instance) {
