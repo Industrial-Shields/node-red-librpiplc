@@ -35,11 +35,11 @@ module.exports = function(RED) {
 			if (this.rpiplc && pin) {
 				const initializedPins = this.rpiplc.initializedPins;
 
-				if (!this.rpiplc.instance || !initializedPins) {
+				if (!this.rpiplc.instance || typeof initializedPins !== "object") {
 					throw new Error("RPIPLC instance not defined. Please use rpiplc set config node");
 				}
 
-				if (typeof initializedPins === "object" && initializedPins[pin] !== this.rpiplc.instance.INPUT) {
+				if (initializedPins[pin] !== this.rpiplc.instance.INPUT) {
 					const pinModeRC = this.rpiplc.instance.pinMode(pin, this.rpiplc.instance.INPUT);
 					if (pinModeRC != 0) {
 						const errorMsg = `Pin ${pin} couldn't be configured (rc = ${pinModeRC})`;

@@ -24,6 +24,17 @@ module.exports = function(RED) {
 		this.rpiplc = RED.nodes.getNode(config.rpiplc);
 
 		this.on("input", msg => {
+			// Value validations
+			const value = parseInt(config.value) || parseInt(msg.payload);
+			if (isNaN(value)) {
+				const errorMsg = `The value to write is not a number: ${value}`;
+				throw new Error(errorMsg);
+			}
+			if (value < 0 || value > 65535) {
+				const errorMsg = `The value to write is not a 16-bit number (0-65535): ${value}`;
+				throw new Error(errorMsg);
+			}
+
 			let pin = config.pin;
 			if (pin == "Message passed") {
 				pin = msg.pin
@@ -32,24 +43,23 @@ module.exports = function(RED) {
 				}
 			}
 
-			let value = 0;
-			if (config.value != '') {
-				value = parseInt(config.value) || 0;
-			} else if (typeof msg.payload == 'number') {
-				value = msg.payload;
-			}
-
 			if (this.rpiplc && pin) {
-				if (!this.rpiplc.instance) {
+				const initializedPins = this.rpiplc.initializedPins;
+
+				if (!this.rpiplc.instance || typeof initializedPins !== "object") {
 					throw new Error("RPIPLC instance not defined. Please use rpiplc set config node");
 				}
 
-				try {
-					msg.rc = this.rpiplc.instance.analogWrite(pin, value);
+				if (initializedPins[pin] !== this.rpiplc.instance.OUTPUT) {
+					const pinModeRC = this.rpiplc.instance.pinMode(pin, this.rpiplc.instance.OUTPUT);
+					if (pinModeRC != 0) {
+						const errorMsg = `Pin ${pin} couldn't be configured (rc = ${pinModeRC})`;
+						throw new Error(errorMsg);
+					}
+					initializedPins[pin] = this.rpiplc.instance.OUTPUT;
 				}
-				catch {
-					throw new Error(`Pin ${pin} is not available for the current configuration (currently ${this.rpiplc.version}/${this.rpiplc.model})`);
-				}
+
+				msg.rc = this.rpiplc.instance.analogWrite(pin, value);
 				this.send(msg);
 			}
 		});

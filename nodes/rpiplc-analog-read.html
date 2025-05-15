@@ -70,7 +70,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 		"RPIPLC_58": [...rpiplcV3ExtraAnalogInputs, ...rpiplcAnalogInputsAnalog0, ...rpiplcAnalogInputsAnalog1, ...rpiplcAnalogInputsAnalog2]
 	};
 
-	const pinsMap = {
+	const pinsMapAnalogInputPins = {
 		"RPIPLC_V6": rpiplcV6AnalogInputPins,
 		"RPIPLC_V4": rpiplcV4AnalogInputPins,
 		"RPIPLC_V3": rpiplcV3AnalogInputPins,
@@ -112,11 +112,11 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 			const analogReadNode = this;
 
 			$("#node-input-rpiplc").change(function() {
-				const hideDiv = $("#hide-node-input-pin");
+				const hideInputDiv = $("#hide-node-input-pin");
 				const pinSelect = $("#node-input-pin");
 
 				function hidePins() {
-					hideDiv.hide();
+					hideInputDiv.hide();
 					pinSelect.empty();
 					pinSelect.append($("<option></option>").val(null).text("You found a bug!"));
 				}
@@ -139,7 +139,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 					return;
 				}
 
-				const pinsArray = pinsMap[version][model];
+				const pinsArray = pinsMapAnalogInputPins[version][model];
 				if (pinsArray.length !== 0) {
 					const actualValue = pinSelect.val() || analogReadNode.pin;
 					pinSelect.empty();
@@ -156,7 +156,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 					if (pinSelect.hasClass("input-error")) {
 						pinSelect.removeClass("input-error");
 					}
-					hideDiv.show();
+					hideInputDiv.show();
 				}
 				else {
 					hidePins();
