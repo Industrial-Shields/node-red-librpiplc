@@ -24,24 +24,56 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 	const rpiplcAnalogInputsRelay0 = [ "I0.2", "I0.3", "I0.4", "I0.5", ];
 	const rpiplcAnalogInputsRelay1 = [ "I1.2", "I1.3", "I1.4", "I1.5", ];
 	const rpiplcAnalogInputsRelay2 = [ "I2.2", "I2.3", "I2.4", "I2.5", ];
-	const rpiplcAnalogInputPins = {
-		"RPIPLC_19R": [...rpiplcAnalogInputsRelay0],
-		"RPIPLC_21": [...rpiplcAnalogInputsAnalog0],
-		"RPIPLC_38AR": [...rpiplcAnalogInputsAnalog0, ...rpiplcAnalogInputsRelay1],
-		"RPIPLC_38R": [...rpiplcAnalogInputsRelay0, ...rpiplcAnalogInputsRelay1],
-		"RPIPLC_42": [...rpiplcAnalogInputsAnalog0, ...rpiplcAnalogInputsAnalog1],
-		"RPIPLC_50RRA": [...rpiplcAnalogInputsRelay0, ...rpiplcAnalogInputsRelay1, ...rpiplcAnalogInputsAnalog2],
-		"RPIPLC_53ARR": [...rpiplcAnalogInputsAnalog0, ...rpiplcAnalogInputsRelay1, ...rpiplcAnalogInputsRelay2],
-		"RPIPLC_54ARA": [...rpiplcAnalogInputsAnalog0, ...rpiplcAnalogInputsRelay1, ...rpiplcAnalogInputsAnalog2],
-		"RPIPLC_57AAR": [...rpiplcAnalogInputsAnalog0, ...rpiplcAnalogInputsAnalog1, ...rpiplcAnalogInputsRelay2],
-		"RPIPLC_57R": [...rpiplcAnalogInputsRelay0, ...rpiplcAnalogInputsRelay1, ...rpiplcAnalogInputsRelay2],
-		"RPIPLC_58": [...rpiplcAnalogInputsAnalog0, ...rpiplcAnalogInputsAnalog1, ...rpiplcAnalogInputsAnalog2]
+
+	const rpiplcV6ExtraAnalogInputs = [];
+	const rpiplcV6AnalogInputPins = {
+		"RPIPLC_19R": [...rpiplcV6ExtraAnalogInputs, ...rpiplcAnalogInputsRelay0],
+		"RPIPLC_21": [...rpiplcV6ExtraAnalogInputs, ...rpiplcAnalogInputsAnalog0],
+		"RPIPLC_38AR": [...rpiplcV6ExtraAnalogInputs, ...rpiplcAnalogInputsAnalog0, ...rpiplcAnalogInputsRelay1],
+		"RPIPLC_38R": [...rpiplcV6ExtraAnalogInputs, ...rpiplcAnalogInputsRelay0, ...rpiplcAnalogInputsRelay1],
+		"RPIPLC_42": [...rpiplcV6ExtraAnalogInputs, ...rpiplcAnalogInputsAnalog0, ...rpiplcAnalogInputsAnalog1],
+		"RPIPLC_50RRA": [...rpiplcV6ExtraAnalogInputs, ...rpiplcAnalogInputsRelay0, ...rpiplcAnalogInputsRelay1, ...rpiplcAnalogInputsAnalog2],
+		"RPIPLC_53ARR": [...rpiplcV6ExtraAnalogInputs, ...rpiplcAnalogInputsAnalog0, ...rpiplcAnalogInputsRelay1, ...rpiplcAnalogInputsRelay2],
+		"RPIPLC_54ARA": [...rpiplcV6ExtraAnalogInputs, ...rpiplcAnalogInputsAnalog0, ...rpiplcAnalogInputsRelay1, ...rpiplcAnalogInputsAnalog2],
+		"RPIPLC_57AAR": [...rpiplcV6ExtraAnalogInputs, ...rpiplcAnalogInputsAnalog0, ...rpiplcAnalogInputsAnalog1, ...rpiplcAnalogInputsRelay2],
+		"RPIPLC_57R": [...rpiplcV6ExtraAnalogInputs, ...rpiplcAnalogInputsRelay0, ...rpiplcAnalogInputsRelay1, ...rpiplcAnalogInputsRelay2],
+		"RPIPLC_58": [...rpiplcV6ExtraAnalogInputs, ...rpiplcAnalogInputsAnalog0, ...rpiplcAnalogInputsAnalog1, ...rpiplcAnalogInputsAnalog2]
+	};
+
+	const rpiplcV4ExtraAnalogInputs = [];
+	const rpiplcV4AnalogInputPins = {
+		"RPIPLC_19R": [...rpiplcV4ExtraAnalogInputs, ...rpiplcAnalogInputsRelay0],
+		"RPIPLC_21": [...rpiplcV4ExtraAnalogInputs, ...rpiplcAnalogInputsAnalog0],
+		"RPIPLC_38AR": [...rpiplcV4ExtraAnalogInputs, ...rpiplcAnalogInputsAnalog0, ...rpiplcAnalogInputsRelay1],
+		"RPIPLC_38R": [...rpiplcV4ExtraAnalogInputs, ...rpiplcAnalogInputsRelay0, ...rpiplcAnalogInputsRelay1],
+		"RPIPLC_42": [...rpiplcV4ExtraAnalogInputs, ...rpiplcAnalogInputsAnalog0, ...rpiplcAnalogInputsAnalog1],
+		"RPIPLC_50RRA": [...rpiplcV4ExtraAnalogInputs, ...rpiplcAnalogInputsRelay0, ...rpiplcAnalogInputsRelay1, ...rpiplcAnalogInputsAnalog2],
+		"RPIPLC_53ARR": [...rpiplcV4ExtraAnalogInputs, ...rpiplcAnalogInputsAnalog0, ...rpiplcAnalogInputsRelay1, ...rpiplcAnalogInputsRelay2],
+		"RPIPLC_54ARA": [...rpiplcV4ExtraAnalogInputs, ...rpiplcAnalogInputsAnalog0, ...rpiplcAnalogInputsRelay1, ...rpiplcAnalogInputsAnalog2],
+		"RPIPLC_57AAR": [...rpiplcV4ExtraAnalogInputs, ...rpiplcAnalogInputsAnalog0, ...rpiplcAnalogInputsAnalog1, ...rpiplcAnalogInputsRelay2],
+		"RPIPLC_57R": [...rpiplcV4ExtraAnalogInputs, ...rpiplcAnalogInputsRelay0, ...rpiplcAnalogInputsRelay1, ...rpiplcAnalogInputsRelay2],
+		"RPIPLC_58": [...rpiplcV4ExtraAnalogInputs, ...rpiplcAnalogInputsAnalog0, ...rpiplcAnalogInputsAnalog1, ...rpiplcAnalogInputsAnalog2]
+	};
+
+	const rpiplcV3ExtraAnalogInputs = [];
+	const rpiplcV3AnalogInputPins = {
+		"RPIPLC_19R": [...rpiplcV3ExtraAnalogInputs, ...rpiplcAnalogInputsRelay0],
+		"RPIPLC_21": [...rpiplcV3ExtraAnalogInputs, ...rpiplcAnalogInputsAnalog0],
+		"RPIPLC_38AR": [...rpiplcV3ExtraAnalogInputs, ...rpiplcAnalogInputsAnalog0, ...rpiplcAnalogInputsRelay1],
+		"RPIPLC_38R": [...rpiplcV3ExtraAnalogInputs, ...rpiplcAnalogInputsRelay0, ...rpiplcAnalogInputsRelay1],
+		"RPIPLC_42": [...rpiplcV3ExtraAnalogInputs, ...rpiplcAnalogInputsAnalog0, ...rpiplcAnalogInputsAnalog1],
+		"RPIPLC_50RRA": [...rpiplcV3ExtraAnalogInputs, ...rpiplcAnalogInputsRelay0, ...rpiplcAnalogInputsRelay1, ...rpiplcAnalogInputsAnalog2],
+		"RPIPLC_53ARR": [...rpiplcV3ExtraAnalogInputs, ...rpiplcAnalogInputsAnalog0, ...rpiplcAnalogInputsRelay1, ...rpiplcAnalogInputsRelay2],
+		"RPIPLC_54ARA": [...rpiplcV3ExtraAnalogInputs, ...rpiplcAnalogInputsAnalog0, ...rpiplcAnalogInputsRelay1, ...rpiplcAnalogInputsAnalog2],
+		"RPIPLC_57AAR": [...rpiplcV3ExtraAnalogInputs, ...rpiplcAnalogInputsAnalog0, ...rpiplcAnalogInputsAnalog1, ...rpiplcAnalogInputsRelay2],
+		"RPIPLC_57R": [...rpiplcV3ExtraAnalogInputs, ...rpiplcAnalogInputsRelay0, ...rpiplcAnalogInputsRelay1, ...rpiplcAnalogInputsRelay2],
+		"RPIPLC_58": [...rpiplcV3ExtraAnalogInputs, ...rpiplcAnalogInputsAnalog0, ...rpiplcAnalogInputsAnalog1, ...rpiplcAnalogInputsAnalog2]
 	};
 
 	const pinsMap = {
-		"RPIPLC_V6": rpiplcAnalogInputPins,
-		"RPIPLC_V4": rpiplcAnalogInputPins,
-		"RPIPLC_V3": rpiplcAnalogInputPins,
+		"RPIPLC_V6": rpiplcV6AnalogInputPins,
+		"RPIPLC_V4": rpiplcV4AnalogInputPins,
+		"RPIPLC_V3": rpiplcV3AnalogInputPins,
 		"UPSAFEPI_V6": {"UPSAFEPI": []},
 		"GATEBERRY_V9": {"GATEBERRY": []},
 		"TOUCHBERRY_PI_V1": {"TOUCHBERRY_PI": ["I0_4_20", "I1_4_20", "I0", "I1"]},
