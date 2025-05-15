@@ -105,10 +105,11 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 				return this.name;
 			}
 			if (this.pin) {
+				let pinStr = this.pin !== "CUSTOM" ? this.pin : "custom"
 				if (this.value === '') {
-					return `write ${this.pin}`;
+					return `write ${pinStr}`;
 				}
-				return `write ${this.pin}: ${this.value}`;
+				return `write ${pinStr}: ${this.value}`;
 			}
 			return "invalid analog write";
 		},

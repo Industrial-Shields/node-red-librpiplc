@@ -100,7 +100,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 				return this.name;
 			}
 			if (this.pin) {
-				return `read ${this.pin}`;
+				let pinStr = this.pin !== "CUSTOM" ? this.pin : "custom"
+				return `read ${pinStr}`;
 			}
 			return "invalid digital read";
 		},
