@@ -146,6 +146,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 				const model = configNode.model;
 				if (version === "CUSTOM") {
 					hidePins();
+					pinSelect.append($("<option></option>").val("CUSTOM").text("CUSTOM"));
+					pinSelect.val("CUSTOM");
 					return;
 				}
 

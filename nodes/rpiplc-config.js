@@ -35,12 +35,12 @@ module.exports = function(RED) {
 				if (rc != 0 && rc != 1) {
 					throw new Error(`Error while initialising rpiplc instance: rc = ${rc}`);
 				}
-				this.initializedPins = {};
 			}
 			catch (e) {
 				throw new Error(`Error while initialising rpiplc instance: ${e}`);
 			}
 		}
+		this.initializedPins = {};
 	}
 
 	RED.nodes.registerType("rpiplc-config", rpiplcConfigNode);

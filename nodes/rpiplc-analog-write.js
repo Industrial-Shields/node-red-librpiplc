@@ -36,7 +36,7 @@ module.exports = function(RED) {
 			}
 
 			let pin = config.pin;
-			if (pin == "Message passed") {
+			if (pin == "Message passed" || pin == "CUSTOM") {
 				pin = msg.pin
 				if (!pin) {
 					throw new Error("Pin was not passed by message");
