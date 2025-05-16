@@ -185,6 +185,28 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 </script>
 
 <script type="text/x-red" data-help-name="rpiplc-analog-read">
-	<p><b>Analog Read</b>. Raspberry PLC input node. Reads the value from the specified analog pin. You can select the model of the Raspberry PLC, and the analog input pin from which we will read the value.</p>
-	<p>See the <a href="https://www.industrialshields.com/blog/raspberry-pi-for-industry-26/post/node-red-tutorial-how-to-read-analog-inputs-from-raspberry-plc-331">online documentation</a> for more information.</p>
-	</script>
+  <p>
+    <b>Analog Read</b>
+  </p>
+  <p>
+    Returns the analog read of a pin as a payload. It also returns a
+    <code>msg.rc</code> attribute to check if the analog read was successful.
+  </p>
+
+  <p>
+    If the selected pin is <code>Message passed</code> or if the configuration node is custom, this
+    node will read the <code>msg.pin</code> attribute to determine which pin to read from.
+  </p>
+
+  <p>
+    This node (as well as the C library) returns an integer in the range of 16 bits. However, the
+    maximum reading value will depend on the PLC being used. For instance, the analog inputs of all
+    Raspberry PLCs, from V3 to V6, operate up to 12 bits (i.e., 0 to 4095), and TouchBerry Pi analog
+    inputs up to 11 bits (i.e., 0 to 2047).
+  </p>
+  <p>
+    See also the
+    <a href="https://www.industrialshields.com/blog/raspberry-pi-for-industry-26/post/node-red-tutorial-how-to-read-analog-inputs-from-raspberry-plc-331">
+    online documentation</a> for more information.
+  </p>
+</script>

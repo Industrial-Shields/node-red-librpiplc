@@ -200,8 +200,34 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 </script>
 
 <script type="text/x-red" data-help-name="rpiplc-digital-write">
-	<p><b>Digital Write</b>. Raspberry PLC output node. Writes the specified value to the digital pin selected. You can set the model of the Raspberry PLC, the digital output pin where we will write the value and the value itself.</p>
-	<p><b>Note:</b> It is also possible to set the value with an incoming <code>msg.payload</code> with the specified values, that must match the string (either "HIGH" or "LOW"), boolean (either true or false) or numeric (either 1 or 0) types.</p>
-	<p>See the <a href="https://www.industrialshields.com/blog/raspberry-pi-for-industry-26/post/node-red-tutorial-how-to-set-digital-outputs-to-raspberry-plc-334#scrollTop=0">online documentation</a> for more information.</p>
+  <p>
+    <b>Digital Write</b>
+  </p>
+  <p>
+    Writes a digital value in the specified pin. It returns a <code>msg.rc</code> attribute to
+    check if the digital write was successful.
+  </p>
+  <p>
+    If the selected pin is <code>Message passed</code> or if the configuration node is custom, this
+    node will read the <code>msg.pin</code> attribute to determine which pin to read from.
+  </p>
+
+  <p>The Value field can take as possible values:</p>
+  <ul>
+    <li><code>HIGH</code></li>
+    <li><code>LOW</code></li>
+    <li><strong>Message passed</strong></li>
+  </ul>
+  <p>
+  If <strong>Message passed</strong>, the payload can take the following values:
+  <ul>
+    <li><code>"HIGH"</code> or <code>"LOW"</code> strings.</li>
+    <li><code>"1"</code> or <code>"0"</code> strings.</li>
+    <li>A boolean (either <code>true</code> or <code>false</code>).</li>
+    <li>A number (either <code>1</code> or <code>0</code>).</li>
+  </ul>
+  <p>
+    See also the <a href="https://www.industrialshields.com/blog/raspberry-pi-for-industry-26/post/node-red-tutorial-how-to-set-digital-outputs-to-raspberry-plc-334#scrollTop=0">online documentation</a> for more information.
+  </p>
 
 </script>

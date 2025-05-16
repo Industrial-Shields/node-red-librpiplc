@@ -135,5 +135,20 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 </script>
 
 <script type="text/x-red" data-help-name="rpiplc-config">
-	<p><b>TODO</b> node description</p>
+  <p>
+    <b>PLC Configuration</b>
+  </p>
+  <p>
+    Set both the version and model of the PLC in which Node-RED is running. Or, if you want to set
+    the PLC configuration programmatically, check <strong>Select through "plc set config"
+    node</strong> and follow the documentation of the
+    <a href="https://github.com/Industrial-Shields/node-red-librpiplc/tree/new-pins-enum?tab=readme-ov-file#plc-set-configuration">
+    PLC set config</a> node.</p>
+  <p>
+    <b>WARNING</b>
+  </p>
+  <p>
+    You should only have <strong>ONE configuration node</strong>, because they can interfere with
+    each other when configuring the C library.
+  </p>
 </script>
