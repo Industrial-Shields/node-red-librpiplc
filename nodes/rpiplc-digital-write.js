@@ -28,7 +28,7 @@ module.exports = function(RED) {
 			let value = config.value || msg.payload;
 			if (value === "HIGH"
 				|| value === "1"
-				|| (typeof value === "number" && value > 0)
+				|| (typeof value === "number" && value == 1)
 				|| (typeof value === "boolean" && value)) {
 				value = this.rpiplc.instance.HIGH;
 			}
