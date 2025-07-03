@@ -18,26 +18,65 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 -->
 
 <script type="text/javascript">
-	const rpiplcDigitalOutputsDigital0 = [ "Q0.0", "Q0.1", "Q0.2", "Q0.3", "Q0.4", "Q0.5", "Q0.6", "Q0.7", ];
-	const rpiplcDigitalOutputsDigital1 = [ "Q1.0", "Q1.1", "Q1.2", "Q1.3", "Q1.4", "Q1.5", "Q1.6", "Q1.7", ];
-	const rpiplcDigitalOutputsDigital2 = [ "Q2.0", "Q2.1", "Q2.2", "Q2.3", "Q2.4", "Q2.5", "Q2.6", "Q2.7", ];
-	const rpiplcDigitalOutputsRelay0 = [ "Q0.0", "Q0.1", "Q0.2", "R0.1", "R0.2", "R0.3", "R0.4", "R0.5", "R0.6", "R0.7", "R0.8", ];
-	const rpiplcDigitalOutputsRelay1 = [ "Q1.0", "Q1.1", "Q1.2", "R1.1", "R1.2", "R1.3", "R1.4", "R1.5", "R1.6", "R1.7", "R1.8", ];
-	const rpiplcDigitalOutputsRelay2 = [ "Q2.0", "Q2.1", "Q2.2", "R2.1", "R2.2", "R2.3", "R2.4", "R2.5", "R2.6", "R2.7", "R2.8", ];
+	const rpiplcDigitalOutputsAnalog0 = [ "Q0.0", "Q0.1", "Q0.2", "Q0.3", "Q0.4", "Q0.5", "Q0.6", "Q0.7", "A0.5", "A0.6", "A0.7", ];
+	const rpiplcDigitalOutputsAnalog1 = [ "Q1.0", "Q1.1", "Q1.2", "Q1.3", "Q1.4", "Q1.5", "Q1.6", "Q1.7", "A1.5", "A1.6", "A1.7", ];
+	const rpiplcDigitalOutputsAnalog2 = [ "Q2.0", "Q2.1", "Q2.2", "Q2.3", "Q2.4", "Q2.5", "Q2.6", "Q2.7", "A2.5", "A2.6", "A2.7", ];
+	const rpiplcDigitalOutputsRelay0 = [ "Q0.0", "Q0.1", "Q0.2", "A0.0", "A0.1", "A0.2", ];
+	const rpiplcDigitalOutputsRelay1 = [ "Q1.0", "Q1.1", "Q1.2", "A1.0", "A1.1", "A1.2", ];
+	const rpiplcDigitalOutputsRelay2 = [ "Q2.0", "Q2.1", "Q2.2", "A2.0", "A2.1", "A2.2", ];
 
-	const rpiplcDigitalOutputPins = {
-		"RPIPLC_19R": ["Message passed", ...rpiplcDigitalOutputsRelay0],
-		"RPIPLC_21": ["Message passed", ...rpiplcDigitalOutputsDigital0],
-		"RPIPLC_38AR": ["Message passed", ...rpiplcDigitalOutputsDigital0, ...rpiplcDigitalOutputsRelay1],
-		"RPIPLC_38R": ["Message passed", ...rpiplcDigitalOutputsRelay0, ...rpiplcDigitalOutputsRelay1],
-		"RPIPLC_42": ["Message passed", ...rpiplcDigitalOutputsDigital0, ...rpiplcDigitalOutputsDigital1],
-		"RPIPLC_50RRA": ["Message passed", ...rpiplcDigitalOutputsRelay0, ...rpiplcDigitalOutputsRelay1, ...rpiplcDigitalOutputsDigital2],
-		"RPIPLC_53ARR": ["Message passed", ...rpiplcDigitalOutputsDigital0, ...rpiplcDigitalOutputsRelay1, ...rpiplcDigitalOutputsRelay2],
-		"RPIPLC_54ARA": ["Message passed", ...rpiplcDigitalOutputsDigital0, ...rpiplcDigitalOutputsRelay1, ...rpiplcDigitalOutputsDigital2],
-		"RPIPLC_57AAR": ["Message passed", ...rpiplcDigitalOutputsDigital0, ...rpiplcDigitalOutputsDigital1, ...rpiplcDigitalOutputsRelay2],
-		"RPIPLC_57R": ["Message passed", ...rpiplcDigitalOutputsRelay0, ...rpiplcDigitalOutputsRelay1, ...rpiplcDigitalOutputsRelay2],
-		"RPIPLC_58": ["Message passed", ...rpiplcDigitalOutputsDigital0, ...rpiplcDigitalOutputsDigital1, ...rpiplcDigitalOutputsDigital2],
-		"CUSTOM": Array.from(new Set(Object.values(["Message passed", ...rpiplcDigitalOutputsDigital0, ...rpiplcDigitalOutputsDigital1, ...rpiplcDigitalOutputsDigital2, ...rpiplcDigitalOutputsRelay0, ...rpiplcDigitalOutputsRelay1, ...rpiplcDigitalOutputsRelay2]).flat()))
+	const rpiplcV6ExtraDigitalOutputs = ["PIN8", "P_RELAY", "OPTO_OUT_1", "OPTO_OUT_2", "INT31", "EXP1_RST", "EXP2_RST"];
+	const rpiplcV6DigitalOutputPins = {
+		"RPIPLC_19R": [...rpiplcV6ExtraDigitalOutputs, ...rpiplcDigitalOutputsRelay0],
+		"RPIPLC_21": [...rpiplcV6ExtraDigitalOutputs, ...rpiplcDigitalOutputsAnalog0],
+		"RPIPLC_38AR": [...rpiplcV6ExtraDigitalOutputs, ...rpiplcDigitalOutputsAnalog0, ...rpiplcDigitalOutputsRelay1],
+		"RPIPLC_38R": [...rpiplcV6ExtraDigitalOutputs, ...rpiplcDigitalOutputsRelay0, ...rpiplcDigitalOutputsRelay1],
+		"RPIPLC_42": [...rpiplcV6ExtraDigitalOutputs, ...rpiplcDigitalOutputsAnalog0, ...rpiplcDigitalOutputsAnalog1],
+		"RPIPLC_50RRA": [...rpiplcV6ExtraDigitalOutputs, ...rpiplcDigitalOutputsRelay0, ...rpiplcDigitalOutputsRelay1, ...rpiplcDigitalOutputsAnalog2],
+		"RPIPLC_53ARR": [...rpiplcV6ExtraDigitalOutputs, ...rpiplcDigitalOutputsAnalog0, ...rpiplcDigitalOutputsRelay1, ...rpiplcDigitalOutputsRelay2],
+		"RPIPLC_54ARA": [...rpiplcV6ExtraDigitalOutputs, ...rpiplcDigitalOutputsAnalog0, ...rpiplcDigitalOutputsRelay1, ...rpiplcDigitalOutputsAnalog2],
+		"RPIPLC_57AAR": [...rpiplcV6ExtraDigitalOutputs, ...rpiplcDigitalOutputsAnalog0, ...rpiplcDigitalOutputsAnalog1, ...rpiplcDigitalOutputsRelay2],
+		"RPIPLC_57R": [...rpiplcV6ExtraDigitalOutputs, ...rpiplcDigitalOutputsRelay0, ...rpiplcDigitalOutputsRelay1, ...rpiplcDigitalOutputsRelay2],
+		"RPIPLC_58": [...rpiplcV6ExtraDigitalOutputs, ...rpiplcDigitalOutputsAnalog0, ...rpiplcDigitalOutputsAnalog1, ...rpiplcDigitalOutputsAnalog2]
+	};
+
+	const rpiplcV4ExtraDigitalOutputs = ["PWM1", "PWM2", "PWM3", "EXP1_RST", "EXP2_RST"];
+	const rpiplcV4DigitalOutputPins = {
+		"RPIPLC_19R": [...rpiplcV4ExtraDigitalOutputs, ...rpiplcDigitalOutputsRelay0],
+		"RPIPLC_21": [...rpiplcV4ExtraDigitalOutputs, ...rpiplcDigitalOutputsAnalog0],
+		"RPIPLC_38AR": [...rpiplcV4ExtraDigitalOutputs, ...rpiplcDigitalOutputsAnalog0, ...rpiplcDigitalOutputsRelay1],
+		"RPIPLC_38R": [...rpiplcV4ExtraDigitalOutputs, ...rpiplcDigitalOutputsRelay0, ...rpiplcDigitalOutputsRelay1],
+		"RPIPLC_42": [...rpiplcV4ExtraDigitalOutputs, ...rpiplcDigitalOutputsAnalog0, ...rpiplcDigitalOutputsAnalog1],
+		"RPIPLC_50RRA": [...rpiplcV4ExtraDigitalOutputs, ...rpiplcDigitalOutputsRelay0, ...rpiplcDigitalOutputsRelay1, ...rpiplcDigitalOutputsAnalog2],
+		"RPIPLC_53ARR": [...rpiplcV4ExtraDigitalOutputs, ...rpiplcDigitalOutputsAnalog0, ...rpiplcDigitalOutputsRelay1, ...rpiplcDigitalOutputsRelay2],
+		"RPIPLC_54ARA": [...rpiplcV4ExtraDigitalOutputs, ...rpiplcDigitalOutputsAnalog0, ...rpiplcDigitalOutputsRelay1, ...rpiplcDigitalOutputsAnalog2],
+		"RPIPLC_57AAR": [...rpiplcV4ExtraDigitalOutputs, ...rpiplcDigitalOutputsAnalog0, ...rpiplcDigitalOutputsAnalog1, ...rpiplcDigitalOutputsRelay2],
+		"RPIPLC_57R": [...rpiplcV4ExtraDigitalOutputs, ...rpiplcDigitalOutputsRelay0, ...rpiplcDigitalOutputsRelay1, ...rpiplcDigitalOutputsRelay2],
+		"RPIPLC_58": [...rpiplcV4ExtraDigitalOutputs, ...rpiplcDigitalOutputsAnalog0, ...rpiplcDigitalOutputsAnalog1, ...rpiplcDigitalOutputsAnalog2]
+	};
+
+	const rpiplcV3ExtraDigitalOutputs = [];
+	const rpiplcV3DigitalOutputPins = {
+		"RPIPLC_19R": [...rpiplcV3ExtraDigitalOutputs, ...rpiplcDigitalOutputsRelay0],
+		"RPIPLC_21": [...rpiplcV3ExtraDigitalOutputs, ...rpiplcDigitalOutputsAnalog0],
+		"RPIPLC_38AR": [...rpiplcV3ExtraDigitalOutputs, ...rpiplcDigitalOutputsAnalog0, ...rpiplcDigitalOutputsRelay1],
+		"RPIPLC_38R": [...rpiplcV3ExtraDigitalOutputs, ...rpiplcDigitalOutputsRelay0, ...rpiplcDigitalOutputsRelay1],
+		"RPIPLC_42": [...rpiplcV3ExtraDigitalOutputs, ...rpiplcDigitalOutputsAnalog0, ...rpiplcDigitalOutputsAnalog1],
+		"RPIPLC_50RRA": [...rpiplcV3ExtraDigitalOutputs, ...rpiplcDigitalOutputsRelay0, ...rpiplcDigitalOutputsRelay1, ...rpiplcDigitalOutputsAnalog2],
+		"RPIPLC_53ARR": [...rpiplcV3ExtraDigitalOutputs, ...rpiplcDigitalOutputsAnalog0, ...rpiplcDigitalOutputsRelay1, ...rpiplcDigitalOutputsRelay2],
+		"RPIPLC_54ARA": [...rpiplcV3ExtraDigitalOutputs, ...rpiplcDigitalOutputsAnalog0, ...rpiplcDigitalOutputsRelay1, ...rpiplcDigitalOutputsAnalog2],
+		"RPIPLC_57AAR": [...rpiplcV3ExtraDigitalOutputs, ...rpiplcDigitalOutputsAnalog0, ...rpiplcDigitalOutputsAnalog1, ...rpiplcDigitalOutputsRelay2],
+		"RPIPLC_57R": [...rpiplcV3ExtraDigitalOutputs, ...rpiplcDigitalOutputsRelay0, ...rpiplcDigitalOutputsRelay1, ...rpiplcDigitalOutputsRelay2],
+		"RPIPLC_58": [...rpiplcV3ExtraDigitalOutputs, ...rpiplcDigitalOutputsAnalog0, ...rpiplcDigitalOutputsAnalog1, ...rpiplcDigitalOutputsAnalog2]
+	};
+
+	const pinsMapDigitalOutputPins = {
+		"RPIPLC_V6": rpiplcV6DigitalOutputPins,
+		"RPIPLC_V4": rpiplcV4DigitalOutputPins,
+		"RPIPLC_V3": rpiplcV3DigitalOutputPins,
+		"UPSAFEPI_V6": {"UPSAFEPI": ["DE_RE"]},
+		"GATEBERRY_V9": {"GATEBERRY": ["DE_RE", "EXP_RST", "EXP_CS", "EXP_PWM"]},
+		"TOUCHBERRY_PI_V1": {"TOUCHBERRY_PI": ["O0", "O1", "O2", "O3", "O4", "RE", "DE", "CS0", "CS1", "EXP1_RST"]},
 	};
 
 	RED.nodes.registerType("rpiplc-digital-write", {
@@ -47,7 +86,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 		defaults: {
 			rpiplc: { value: "", type: "rpiplc-config", required: true },
 			pin: { value: "", required: true },
-			value: { value: "" },
+			value: { value: null },
 			name: { value: "" },
 		},
 
@@ -62,67 +101,96 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 				return this.name;
 			}
 			if (this.pin) {
-				if (this.value === '0') {
-					return `write ${this.pin}: LOW`;
-				} else if (this.value === '1') {
-					return `write ${this.pin}: HIGH`;
+				let pinStr = this.pin !== "CUSTOM" ? this.pin : "custom"
+				if (this.value === '') {
+					return `write ${pinStr}`;
 				}
-				return `write ${this.pin}`;
+				return `write ${pinStr}: ${this.value}`;
 			}
-			return "digital write";
+			return "invalid digital write";
 		},
 		paletteLabel: function() {
 			return this.name || "digital write";
 		},
 
 		oneditprepare: function() {
-			const node = this;
+			const digitalWriteNode = this;
 
 			$("#node-input-rpiplc").change(function() {
+				const hideInputDiv = $("#hide-node-input-pin");
+				const hideValueDiv = $("#hide-node-value-pin");
 				const pinSelect = $("#node-input-pin");
-				if (!pinSelect) {
+
+				function hidePins() {
+					hideInputDiv.show();
+					hideInputDiv.hide();
+					pinSelect.empty();
+					pinSelect.append($("<option></option>").val(null).text("You found a bug!"));
+				}
+
+				const configId = $(this).val();
+				if (!configId) {
+					hidePins();
 					return;
 				}
-				let pins = [];
-				const configId = $(this).val();
-				if (configId) {
-					const configNode = RED.nodes.node(configId);
-					if (configNode) {
-						pins = rpiplcDigitalOutputPins[configNode.model];
+				const configNode = RED.nodes.node(configId);
+				if (!configNode) {
+					hidePins();
+					return;
+				}
 
-						if (!Array.isArray(pins)) {
-							pins = [];
-						}
+				const version = configNode.version;
+				const model = configNode.model;
+				if (version === "CUSTOM") {
+					hidePins();
+					pinSelect.append($("<option></option>").val("CUSTOM").text("CUSTOM"));
+					pinSelect.val("CUSTOM");
+					return;
+				}
+
+				const pinsArray = pinsMapDigitalOutputPins[version][model];
+				if (pinsArray.length !== 0) {
+					const actualValue = pinSelect.val() || digitalWriteNode.pin;
+					pinSelect.empty();
+					pinsArray.forEach((pin) => {
+						pinSelect.append($("<option></option>").val(pin).text(pin))
+					});
+					pinSelect.append($("<option></option>")
+						.val("Message passed").text("Message passed"))
+					// Replace if some pin was already set in the node
+					if (pinsArray.includes(actualValue) || actualValue === "Message passed") {
+						pinSelect.val(actualValue);
 					}
+					// Clean the error border if present
+					if (pinSelect.hasClass("input-error")) {
+						pinSelect.removeClass("input-error");
+					}
+					hideInputDiv.show();
+					hideValueDiv.show();
 				}
-				const value = pinSelect.val() || node.pin;
-
-				pinSelect.empty();
-				pins.forEach((pin) => pinSelect.append($("<option></option>").val(pin).text(pin)));
-
-				if (pins.includes(value)) {
-					pinSelect.val(value);
+				else {
+					hidePins();
 				}
-			}).change();
+			});
 		},
 	});
 </script>
 
 <script type="text/x-red" data-template-name="rpiplc-digital-write">
 	<div class="form-row">
-		<label for="node-input-rpiplc">RPIPLC</label>
-		<input type="text" id="node-input-rpiplc" placeholder="RPIPLC">
+		<label for="node-input-rpiplc"><i class="fa fa-cog"></i> PLC type</label>
+		<input type="text" id="node-input-rpiplc" placeholder="PLC type">
 	</div>
-	<div class="form-row">
+	<div class="form-row" id="hide-node-input-pin">
 		<label for="node-input-pin"><i class="fa fa-circle-o"></i> Output</label>
-		<select id="node-input-pin" placeholder="Select an input"></select>
+		<select id="node-input-pin" placeholder="Select an output"></select>
 	</div>
-	<div class="form-row">
-		<label for="node-input-value">Value</label>
+	<div class="form-row" id="hide-node-input-value">
+		<label for="node-input-value"><i class="fa fa-sliders"></i> Value</label>
 		<select id="node-input-value" placeholder="Value">
-			<option value="">Message passed</option>
 			<option value="0">LOW</option>
 			<option value="1">HIGH</option>
+			<option value="">Message passed</option>
 		</select>
 	</div>
 	<div class="form-row">
@@ -132,8 +200,34 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 </script>
 
 <script type="text/x-red" data-help-name="rpiplc-digital-write">
-	<p><b>Digital Write</b>. Raspberry PLC output node. Writes the specified value to the digital pin selected. You can set the model of the Raspberry PLC, the digital output pin where we will write the value and the value itself.</p>
-	<p><b>Note:</b> It is also possible to set the value with an incoming <code>msg.payload</code> with the specified values, that must match the string (either "HIGH" or "LOW"), boolean (either true or false) or numeric (either 1 or 0) types.</p>
-	<p>See the <a href="https://www.industrialshields.com/blog/raspberry-pi-for-industry-26/post/node-red-tutorial-how-to-set-digital-outputs-to-raspberry-plc-334#scrollTop=0">online documentation</a> for more information.</p>
+  <p>
+    <b>Digital Write</b>
+  </p>
+  <p>
+    Writes a digital value in the specified pin. It returns a <code>msg.rc</code> attribute to
+    check if the digital write was successful.
+  </p>
+  <p>
+    If the selected pin is <code>Message passed</code> or if the configuration node is custom, this
+    node will read the <code>msg.pin</code> attribute to determine which pin to read from.
+  </p>
+
+  <p>The Value field can take as possible values:</p>
+  <ul>
+    <li><code>HIGH</code></li>
+    <li><code>LOW</code></li>
+    <li><strong>Message passed</strong></li>
+  </ul>
+  <p>
+  If <strong>Message passed</strong>, the payload can take the following values:
+  <ul>
+    <li><code>"HIGH"</code> or <code>"LOW"</code> strings.</li>
+    <li><code>"1"</code> or <code>"0"</code> strings.</li>
+    <li>A boolean (either <code>true</code> or <code>false</code>).</li>
+    <li>A number (either <code>1</code> or <code>0</code>).</li>
+  </ul>
+  <p>
+    See also the <a href="https://www.industrialshields.com/blog/raspberry-pi-for-industry-26/post/node-red-tutorial-how-to-set-digital-outputs-to-raspberry-plc-334#scrollTop=0">online documentation</a> for more information.
+  </p>
 
 </script>

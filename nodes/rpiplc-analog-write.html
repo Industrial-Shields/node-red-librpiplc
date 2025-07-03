@@ -25,19 +25,58 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 	const rpiplcAnalogOutputsRelay1 = [ "Q1.0", "Q1.1", "Q1.2", "A1.0", "A1.1", "A1.2", ];
 	const rpiplcAnalogOutputsRelay2 = [ "Q2.0", "Q2.1", "Q2.2", "A2.0", "A2.1", "A2.2", ];
 
-	const rpiplcAnalogOutputPins = {
-		"RPIPLC_19R": ["Message passed", ...rpiplcAnalogOutputsRelay0],
-		"RPIPLC_21": ["Message passed", ...rpiplcAnalogOutputsAnalog0],
-		"RPIPLC_38AR": ["Message passed", ...rpiplcAnalogOutputsAnalog0, ...rpiplcAnalogOutputsRelay1],
-		"RPIPLC_38R": ["Message passed", ...rpiplcAnalogOutputsRelay0, ...rpiplcAnalogOutputsRelay1],
-		"RPIPLC_42": ["Message passed", ...rpiplcAnalogOutputsAnalog0, ...rpiplcAnalogOutputsAnalog1],
-		"RPIPLC_50RRA": ["Message passed", ...rpiplcAnalogOutputsRelay0, ...rpiplcAnalogOutputsRelay1, ...rpiplcAnalogOutputsAnalog2],
-		"RPIPLC_53ARR": ["Message passed", ...rpiplcAnalogOutputsAnalog0, ...rpiplcAnalogOutputsRelay1, ...rpiplcAnalogOutputsRelay2],
-		"RPIPLC_54ARA": ["Message passed", ...rpiplcAnalogOutputsAnalog0, ...rpiplcAnalogOutputsRelay1, ...rpiplcAnalogOutputsAnalog2],
-		"RPIPLC_57AAR": ["Message passed", ...rpiplcAnalogOutputsAnalog0, ...rpiplcAnalogOutputsAnalog1, ...rpiplcAnalogOutputsRelay2],
-		"RPIPLC_57R": ["Message passed", ...rpiplcAnalogOutputsRelay0, ...rpiplcAnalogOutputsRelay1, ...rpiplcAnalogOutputsRelay2],
-		"RPIPLC_58": ["Message passed", ...rpiplcAnalogOutputsAnalog0, ...rpiplcAnalogOutputsAnalog1, ...rpiplcAnalogOutputsAnalog2],
-		"CUSTOM": Array.from(new Set(Object.values(["Message passed", ...rpiplcAnalogOutputsAnalog0, ...rpiplcAnalogOutputsAnalog1, ...rpiplcAnalogOutputsAnalog2, ...rpiplcAnalogOutputsRelay0, ...rpiplcAnalogOutputsRelay1, ...rpiplcAnalogOutputsRelay2]).flat())),
+	const rpiplcV6ExtraAnalogOutputs = [];
+	const rpiplcV6AnalogOutputPins = {
+		"RPIPLC_19R": [...rpiplcV6ExtraAnalogOutputs, ...rpiplcAnalogOutputsRelay0],
+		"RPIPLC_21": [...rpiplcV6ExtraAnalogOutputs, ...rpiplcAnalogOutputsAnalog0],
+		"RPIPLC_38AR": [...rpiplcV6ExtraAnalogOutputs, ...rpiplcAnalogOutputsAnalog0, ...rpiplcAnalogOutputsRelay1],
+		"RPIPLC_38R": [...rpiplcV6ExtraAnalogOutputs, ...rpiplcAnalogOutputsRelay0, ...rpiplcAnalogOutputsRelay1],
+		"RPIPLC_42": [...rpiplcV6ExtraAnalogOutputs, ...rpiplcAnalogOutputsAnalog0, ...rpiplcAnalogOutputsAnalog1],
+		"RPIPLC_50RRA": [...rpiplcV6ExtraAnalogOutputs, ...rpiplcAnalogOutputsRelay0, ...rpiplcAnalogOutputsRelay1, ...rpiplcAnalogOutputsAnalog2],
+		"RPIPLC_53ARR": [...rpiplcV6ExtraAnalogOutputs, ...rpiplcAnalogOutputsAnalog0, ...rpiplcAnalogOutputsRelay1, ...rpiplcAnalogOutputsRelay2],
+		"RPIPLC_54ARA": [...rpiplcV6ExtraAnalogOutputs, ...rpiplcAnalogOutputsAnalog0, ...rpiplcAnalogOutputsRelay1, ...rpiplcAnalogOutputsAnalog2],
+		"RPIPLC_57AAR": [...rpiplcV6ExtraAnalogOutputs, ...rpiplcAnalogOutputsAnalog0, ...rpiplcAnalogOutputsAnalog1, ...rpiplcAnalogOutputsRelay2],
+		"RPIPLC_57R": [...rpiplcV6ExtraAnalogOutputs, ...rpiplcAnalogOutputsRelay0, ...rpiplcAnalogOutputsRelay1, ...rpiplcAnalogOutputsRelay2],
+		"RPIPLC_58": [...rpiplcV6ExtraAnalogOutputs, ...rpiplcAnalogOutputsAnalog0, ...rpiplcAnalogOutputsAnalog1, ...rpiplcAnalogOutputsAnalog2]
+	};
+
+	const rpiplcV4ExtraAnalogOutputs = ["PWM1", "PWM2", "PWM3"];
+	const rpiplcV4AnalogOutputPins = {
+		"RPIPLC_19R": [...rpiplcV4ExtraAnalogOutputs, ...rpiplcAnalogOutputsRelay0],
+		"RPIPLC_21": [...rpiplcV4ExtraAnalogOutputs, ...rpiplcAnalogOutputsAnalog0],
+		"RPIPLC_38AR": [...rpiplcV4ExtraAnalogOutputs, ...rpiplcAnalogOutputsAnalog0, ...rpiplcAnalogOutputsRelay1],
+		"RPIPLC_38R": [...rpiplcV4ExtraAnalogOutputs, ...rpiplcAnalogOutputsRelay0, ...rpiplcAnalogOutputsRelay1],
+		"RPIPLC_42": [...rpiplcV4ExtraAnalogOutputs, ...rpiplcAnalogOutputsAnalog0, ...rpiplcAnalogOutputsAnalog1],
+		"RPIPLC_50RRA": [...rpiplcV4ExtraAnalogOutputs, ...rpiplcAnalogOutputsRelay0, ...rpiplcAnalogOutputsRelay1, ...rpiplcAnalogOutputsAnalog2],
+		"RPIPLC_53ARR": [...rpiplcV4ExtraAnalogOutputs, ...rpiplcAnalogOutputsAnalog0, ...rpiplcAnalogOutputsRelay1, ...rpiplcAnalogOutputsRelay2],
+		"RPIPLC_54ARA": [...rpiplcV4ExtraAnalogOutputs, ...rpiplcAnalogOutputsAnalog0, ...rpiplcAnalogOutputsRelay1, ...rpiplcAnalogOutputsAnalog2],
+		"RPIPLC_57AAR": [...rpiplcV4ExtraAnalogOutputs, ...rpiplcAnalogOutputsAnalog0, ...rpiplcAnalogOutputsAnalog1, ...rpiplcAnalogOutputsRelay2],
+		"RPIPLC_57R": [...rpiplcV4ExtraAnalogOutputs, ...rpiplcAnalogOutputsRelay0, ...rpiplcAnalogOutputsRelay1, ...rpiplcAnalogOutputsRelay2],
+		"RPIPLC_58": [...rpiplcV4ExtraAnalogOutputs, ...rpiplcAnalogOutputsAnalog0, ...rpiplcAnalogOutputsAnalog1, ...rpiplcAnalogOutputsAnalog2]
+	};
+
+	const rpiplcV3ExtraAnalogOutputs = [];
+	const rpiplcV3AnalogOutputPins = {
+		"RPIPLC_19R": [...rpiplcV3ExtraAnalogOutputs, ...rpiplcAnalogOutputsRelay0],
+		"RPIPLC_21": [...rpiplcV3ExtraAnalogOutputs, ...rpiplcAnalogOutputsAnalog0],
+		"RPIPLC_38AR": [...rpiplcV3ExtraAnalogOutputs, ...rpiplcAnalogOutputsAnalog0, ...rpiplcAnalogOutputsRelay1],
+		"RPIPLC_38R": [...rpiplcV3ExtraAnalogOutputs, ...rpiplcAnalogOutputsRelay0, ...rpiplcAnalogOutputsRelay1],
+		"RPIPLC_42": [...rpiplcV3ExtraAnalogOutputs, ...rpiplcAnalogOutputsAnalog0, ...rpiplcAnalogOutputsAnalog1],
+		"RPIPLC_50RRA": [...rpiplcV3ExtraAnalogOutputs, ...rpiplcAnalogOutputsRelay0, ...rpiplcAnalogOutputsRelay1, ...rpiplcAnalogOutputsAnalog2],
+		"RPIPLC_53ARR": [...rpiplcV3ExtraAnalogOutputs, ...rpiplcAnalogOutputsAnalog0, ...rpiplcAnalogOutputsRelay1, ...rpiplcAnalogOutputsRelay2],
+		"RPIPLC_54ARA": [...rpiplcV3ExtraAnalogOutputs, ...rpiplcAnalogOutputsAnalog0, ...rpiplcAnalogOutputsRelay1, ...rpiplcAnalogOutputsAnalog2],
+		"RPIPLC_57AAR": [...rpiplcV3ExtraAnalogOutputs, ...rpiplcAnalogOutputsAnalog0, ...rpiplcAnalogOutputsAnalog1, ...rpiplcAnalogOutputsRelay2],
+		"RPIPLC_57R": [...rpiplcV3ExtraAnalogOutputs, ...rpiplcAnalogOutputsRelay0, ...rpiplcAnalogOutputsRelay1, ...rpiplcAnalogOutputsRelay2],
+		"RPIPLC_58": [...rpiplcV3ExtraAnalogOutputs, ...rpiplcAnalogOutputsAnalog0, ...rpiplcAnalogOutputsAnalog1, ...rpiplcAnalogOutputsAnalog2]
+	};
+
+	const pinsMapAnalogOutputPins = {
+		"RPIPLC_V6": rpiplcV6AnalogOutputPins,
+		"RPIPLC_V4": rpiplcV4AnalogOutputPins,
+		"RPIPLC_V3": rpiplcV3AnalogOutputPins,
+		"UPSAFEPI_V6": {"UPSAFEPI": []},
+		"GATEBERRY_V9": {"GATEBERRY": []},
+		"TOUCHBERRY_PI_V1": {"TOUCHBERRY_PI": []},
 	};
 
 	RED.nodes.registerType("rpiplc-analog-write", {
@@ -47,7 +86,11 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 		defaults: {
 			rpiplc: { value: "", type: "rpiplc-config", required: true },
 			pin: { value: "", required: true },
-			value: { value: "" },
+			value: {
+				value: null,
+				validate: RED.validators.typedInput("valueType", false),
+			},
+			valueType: { value: "num" },
 			name: { value: "" },
 		},
 
@@ -62,62 +105,100 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 				return this.name;
 			}
 			if (this.pin) {
+				let pinStr = this.pin !== "CUSTOM" ? this.pin : "custom"
 				if (this.value === '') {
-					return `write ${this.pin}`;
+					return `write ${pinStr}`;
 				}
-				return `write ${this.pin}: ${this.value}`;
+				return `write ${pinStr}: ${this.value}`;
 			}
-			return "analog write";
+			return "invalid analog write";
 		},
 		paletteLabel: function() {
 			return this.name || "analog write";
 		},
 
 		oneditprepare: function() {
-			const node = this;
+			const analogWriteNode = this;
 
 			$("#node-input-rpiplc").change(function() {
+				const hideInputDiv = $("#hide-node-input-pin");
+				const hideValueDiv = $("#hide-node-value-pin");
 				const pinSelect = $("#node-input-pin");
-				if (!pinSelect) {
+
+				function hidePins() {
+					hideInputDiv.show();
+					hideInputDiv.hide();
+					pinSelect.empty();
+					pinSelect.append($("<option></option>").val(null).text("You found a bug!"));
+				}
+
+				const configId = $(this).val();
+				if (!configId) {
+					hidePins();
 					return;
 				}
-				let pins = [];
-				const configId = $(this).val();
-				if (configId) {
-					const configNode = RED.nodes.node(configId);
-					if (configNode) {
-						pins = rpiplcAnalogOutputPins[configNode.model];
+				const configNode = RED.nodes.node(configId);
+				if (!configNode) {
+					hidePins();
+					return;
+				}
 
-						if (!Array.isArray(pins)) {
-							pins = [];
-						}
+				const version = configNode.version;
+				const model = configNode.model;
+				if (version === "CUSTOM") {
+					hidePins();
+					pinSelect.append($("<option></option>").val("CUSTOM").text("CUSTOM"));
+					pinSelect.val("CUSTOM");
+					return;
+				}
+
+				const pinsArray = pinsMapAnalogOutputPins[version][model];
+				if (pinsArray.length !== 0) {
+					const actualValue = pinSelect.val() || analogWriteNode.pin;
+					pinSelect.empty();
+					pinsArray.forEach((pin) => {
+						pinSelect.append($("<option></option>").val(pin).text(pin))
+					});
+					pinSelect.append($("<option></option>")
+						.val("Message passed").text("Message passed"))
+					// Replace if some pin was already set in the node
+					if (pinsArray.includes(actualValue) || actualValue === "Message passed") {
+						pinSelect.val(actualValue);
 					}
+					// Clean the error border if present
+					if (pinSelect.hasClass("input-error")) {
+						pinSelect.removeClass("input-error");
+					}
+					hideInputDiv.show();
+					hideValueDiv.show();
 				}
-				const value = pinSelect.val() || node.pin;
-
-				pinSelect.empty();
-				pins.forEach((pin) => pinSelect.append($("<option></option>").val(pin).text(pin)));
-
-				if (pins.includes(value)) {
-					pinSelect.val(value);
+				else {
+					hidePins();
 				}
-			}).change();
+			});
+
+			$("#node-input-value").typedInput({
+				type: "num",
+				types: ["num"],
+				typeField: "#node-input-valueType",
+			});
 		},
 	});
 </script>
 
 <script type="text/x-red" data-template-name="rpiplc-analog-write">
 	<div class="form-row">
-		<label for="node-input-rpiplc">RPIPLC</label>
-		<input type="text" id="node-input-rpiplc" placeholder="RPIPLC">
+		<label for="node-input-rpiplc"><i class="fa fa-cog"></i> PLC type</label>
+		<input type="text" id="node-input-rpiplc" placeholder="PLC type">
 	</div>
-	<div class="form-row">
+	<div class="form-row" id="hide-node-input-pin">
 		<label for="node-input-pin"><i class="fa fa-circle-o"></i> Output</label>
-		<select id="node-input-pin" placeholder="Select an input"></select>
+		<select id="node-input-pin" placeholder="Select an output"></select>
 	</div>
-	<div class="form-row">
-		<label for="node-input-value">Value</label>
-		<input type="text" id="node-input-value" placeholder="Value">
+	<div class="form-row" id="hide-node-input-value">
+		<label for="node-input-value"><i class="fa fa-sliders"></i> Value</label>
+		<input type="hidden" id="node-input-valueType">
+		<input type="text" style="width:70%" id="node-input-value" placeholder="msg.payload">
 	</div>
 	<div class="form-row">
 		<label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
@@ -126,7 +207,29 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 </script>
 
 <script type="text/x-red" data-help-name="rpiplc-analog-write">
-	<p><b>Analog Write</b>. Raspberry PLC output node. Writes the specified value to the analog pin selected. You can set the model of the Raspberry PLC, the analog output pin where we will write the value and the value itself.</p>
-<p><b>Note:</b> It is also possible to set the value with an incoming <code>msg.payload</code> with the specified values, that must match the numeric type, from 0 to 4095.</p>
-<p>See the <a href="https://www.industrialshields.com/blog/raspberry-pi-for-industry-26/post/node-red-tutorial-how-to-set-analog-outputs-to-raspberry-plc-332">online documentation</a> for more information.</p>
+  <p>
+    <b>Analog Write</b>
+  </p>
+  <p>
+    Writes an analog value in the specified pin. It returns a <code>msg.rc</code> attribute to check
+    if the analog read was successful.
+  </p>
+  <p>
+    If the selected pin is <code>Message passed</code> or if the configuration node is custom, this
+    node will read the <code>msg.pin</code> attribute to determine which pin to read from.
+  </p>
+  <p>
+    If the Value field is empty, this node will read the <code>msg.payload</code> attribute to
+    determine which value will write to the pin. It must be an integer between 0 and 65535 (16-bit).
+  </p>
+  <p>
+    This node (as well as the C library) has an accepted range of 16 bits. However, the maximum
+    value must be adjusted depending on the PLC being used. For instance, the analog outputs of all
+    Raspberry PLCs, from V3 to V6, operate up to 12 bits (i.e., 0 to 4095).
+  </p>
+  <p>
+    See also the
+    <a href="https://www.industrialshields.com/blog/raspberry-pi-for-industry-26/post/node-red-tutorial-how-to-set-analog-outputs-to-raspberry-plc-332">
+    online documentation</a> for more information.
+  </p>
 </script>

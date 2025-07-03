@@ -31,11 +31,16 @@ module.exports = function(RED) {
 		if (!this.isCustom) {
 			try {
 				this.instance = rpiplc(this.version, this.model);
+				const rc = this.instance.rc;
+				if (rc != 0 && rc != 1) {
+					throw new Error(`Error while initialising PLC instance: rc = ${rc}`);
+				}
 			}
 			catch (e) {
-				throw new Error(`Error while initialising rpiplc instance: ${e}`);
+				throw new Error(`Error while initialising PLC instance: ${e}`);
 			}
 		}
+		this.initializedPins = {};
 	}
 
 	RED.nodes.registerType("rpiplc-config", rpiplcConfigNode);

@@ -34,19 +34,19 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 		align: "left",
 		labelStyle: "node_label",
 		label: function() {
-			return this.name || "rpiplc set config";
+			return this.name || "plc set config";
 		},
 
 		paletteLabel: function() {
-			return "rpiplc set config";
+			return "plc set config";
 		},
 	});
 </script>
 
 <script type="text/x-red" data-template-name="rpiplc-set-config">
   	<div class="form-row">
-		<label for="node-input-rpiplc">RPIPLC</label>
-		<input type="text" id="node-input-rpiplc" placeholder="RPIPLC">
+		<label for="node-input-rpiplc"><i class="fa fa-cog"></i> PLC type</label>
+		<input type="text" id="node-input-rpiplc" placeholder="PLC type">
 	</div>
 	<div class="form-row">
 		<label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
@@ -55,6 +55,29 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 </script>
 
 <script type="text/x-red" data-help-name="rpiplc-set-config">
-	<p><b>Set custom configuration</b>. Raspberry PLC set custom configuration node. It enables a user to modify a configuration marked as Custom, by passing a message with the "version" and "model" fields. It CANNOT be applied to non-custom profiles.</p>
-	</script>
+  <p>
+    <b>PLC set config</b>
+  </p>
+  <p>
+    This node allows programmers to change the version and model of the PLC being used while
+    executing the Node-RED flows.
+  </p>
+  <p>
+    To change these settings, send a message with the attributes <code>msg.version</code>
+    and <code>msg.model</code>. Check the following sections for a list of
+    available <a href="https://github.com/Industrial-Shields/node-red-librpiplc/tree/new-pins-enum?tab=readme-ov-file#available-plc-versions">versions</a>
+    and <a href="https://github.com/Industrial-Shields/node-red-librpiplc/tree/new-pins-enum?tab=readme-ov-file#available-plc-models">models</a>.
+    The node will return a payload containing a number indicating whether the library was
+    initialized successfully with the new configuration (0 if correctly initialized; otherwise,
+    some error occurred).
+  </p>
+  <p>
+    <b>WARNING</b>
+  </p>
+  <p>
+    This node needs to be configured with a custom configuration node, that is, checking
+    the <strong>Select through "plc set config" node</strong> box. Otherwise, it will raise an
+    exception every time a message is passed to it.
+  </p>
+
 </script>

@@ -31,30 +31,61 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 				return this.name || "Custom";
 			}
 			else {
-				return this.name || `RPIPLC ${this.model.split('_')[1]} ${this.version.split('_')[1]}`;
+				if (this.version.startsWith("RPIPLC")) {
+					return this.name || `RPi PLC ${this.model.split('_')[1]} ${this.version.split('_')[1]}`;
+				}
+				else {
+					return this.name || `${this.version.replace('_', ' ')}`;
+				}
 			}
 		},
 
 		oneditprepare: function() {
+			const hideVersionDiv = $("#hide-node-config-input-version");
+			const hideModelDiv = $("#hide-node-config-input-model");
+			const inputIsCustom = $("#node-config-input-isCustom");
+			const inputVersion = $("#node-config-input-version");
+			const inputModel = $("#node-config-input-model");
+
 			function updateIsCustom() {
-				this.isCustom = $("#node-config-input-isCustom").is(':checked');
+				const version = inputVersion.val();
+				const model = inputModel.val();
+				this.isCustom = inputIsCustom.is(":checked");
 				if (!this.isCustom) {
-					if ($('#node-config-input-version').val() === "CUSTOM") {
-						$('#node-config-input-version').val('RPIPLC_V6');
-						$('#node-config-input-model').val('RPIPLC_21');
+					if (!version || version === "CUSTOM") {
+						inputVersion.val("RPIPLC_V6");
+						inputModel.val("RPIPLC_21");
 					}
-					$("#hide-show-div").show();
+					hideVersionDiv.show();
+					hideModelDiv.show();
 				}
 				else {
-					$('#node-config-input-version').val('CUSTOM');
-					$('#node-config-input-model').val('CUSTOM');
-					$("#hide-show-div").hide();
+					inputVersion.val("CUSTOM");
+					inputModel.val("CUSTOM");
+					hideVersionDiv.hide();
+					hideModelDiv.hide();
 				}
 			};
 			updateIsCustom();
-			$("#node-config-input-isCustom").on("click", function() {
-				updateIsCustom();
-			});
+			inputIsCustom.on("click", updateIsCustom);
+
+			function updateModelHideDiv() {
+				const version = inputVersion.val();
+				const model = inputModel.val();
+				if (version.startsWith("RPIPLC")) {
+					hideModelDiv.show();
+					if (!model.startsWith("RPIPLC")) {
+						inputModel.val("RPIPLC_21");
+					}
+				}
+				else {
+					hideModelDiv.hide();
+					const newModel = version.split(/_V\d+/)[0];
+					inputModel.val(newModel);
+				}
+			}
+			updateModelHideDiv();
+			inputVersion.on("change", updateModelHideDiv);
 		},
 	});
 </script>
@@ -65,39 +96,59 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 		<input type="text" id="node-config-input-name" placeholder="Name">
 	</div>
 	<div class="form-row">
-                <label for="node-config-label-isCustom">Custom Configuration</label>
-                <input type="checkbox" id="node-config-input-isCustom">
+		<label><i class="fa fa-cog"></i> Custom</label>
+        	<input type="checkbox" id="node-config-input-isCustom" style="display: inline-block; width: auto; vertical-align: top;" autocomplete="off">
+        	<label style="width: auto;" for="node-config-input-isCustom"> Select through "plc set config" node</label>
 	</div>
-	<div class="hide" id="hide-show-div">
-		<div class="form-row">
-			<label for="node-config-input-version">Version</label>
-			<select id="node-config-input-version">
-				<option value="RPIPLC_V6">RPIPLC V6</option>
-				<option value="RPIPLC_V4">RPIPLC V4</option>
-				<option value="RPIPLC_V3">RPIPLC V3</option>
-				<option hidden value="CUSTOM">CUSTOM</option>
-			</select>
-		</div>
-		<div class="form-row">
-			<label for="node-config-input-model">Model</label>
-			<select id="node-config-input-model">
-				<option value="RPIPLC_19R">RPIPLC 19R</option>
-				<option value="RPIPLC_21">RPIPLC 21</option>
-				<option value="RPIPLC_38AR">RPIPLC 38AR</option>
-				<option value="RPIPLC_38R">RPIPLC 38R</option>
-				<option value="RPIPLC_42">RPIPLC 42</option>
-				<option value="RPIPLC_50RRA">RPIPLC 50RRA</option>
-				<option value="RPIPLC_53ARR">RPIPLC 53ARR</option>
-				<option value="RPIPLC_54ARA">RPIPLC 54ARA</option>
-				<option value="RPIPLC_57AAR">RPIPLC 57AAR</option>
-				<option value="RPIPLC_57R">RPIPLC 57R</option>
-				<option value="RPIPLC_58">RPIPLC 58</option>
-				<option hidden value="CUSTOM">CUSTOM</option>
-			</select>
-		</div>
+	<div class="form-row" id="hide-node-config-input-version">
+		<label for="node-config-input-version">Version</label>
+		<select id="node-config-input-version">
+			<option value="RPIPLC_V6">RPi PLC V6</option>
+			<option value="RPIPLC_V4">RPi PLC V4</option>
+			<option value="RPIPLC_V3">RPi PLC V3</option>
+			<option value="UPSAFEPI_V6">UPSafePi V6</option>
+			<option value="GATEBERRY_V9">GateBerry V9</option>
+			<option value="TOUCHBERRY_PI_V1">TouchBerry Pi V1</option>
+			<option hidden value="CUSTOM"></option>
+		</select>
+	</div>
+	<div class="form-row" id="hide-node-config-input-model">
+		<label for="node-config-input-model">Model</label>
+		<select id="node-config-input-model">
+			<option value="RPIPLC_19R">19R</option>
+			<option value="RPIPLC_21">21</option>
+			<option value="RPIPLC_38AR">38AR</option>
+			<option value="RPIPLC_38R">38R</option>
+			<option value="RPIPLC_42">42</option>
+			<option value="RPIPLC_50RRA">50RRA</option>
+			<option value="RPIPLC_53ARR">53ARR</option>
+			<option value="RPIPLC_54ARA">54ARA</option>
+			<option value="RPIPLC_57AAR">57AAR</option>
+			<option value="RPIPLC_57R">57R</option>
+			<option value="RPIPLC_58">58</option>
+			<option hidden value="UPSAFEPI"></option>
+			<option hidden value="GATEBERRY"></option>
+			<option hidden value="TOUCHBERRY_PI"></option>
+			<option hidden value="CUSTOM"></option>
+		</select>
 	</div>
 </script>
 
 <script type="text/x-red" data-help-name="rpiplc-config">
-	<p><b>TODO</b> node description</p>
+  <p>
+    <b>PLC Configuration</b>
+  </p>
+  <p>
+    Set both the version and model of the PLC in which Node-RED is running. Or, if you want to set
+    the PLC configuration programmatically, check <strong>Select through "plc set config"
+    node</strong> and follow the documentation of the
+    <a href="https://github.com/Industrial-Shields/node-red-librpiplc/tree/new-pins-enum?tab=readme-ov-file#plc-set-configuration">
+    PLC set config</a> node.</p>
+  <p>
+    <b>WARNING</b>
+  </p>
+  <p>
+    You should only have <strong>ONE configuration node</strong>, because they can interfere with
+    each other when configuring the C library.
+  </p>
 </script>

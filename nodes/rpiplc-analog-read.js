@@ -25,7 +25,7 @@ module.exports = function(RED) {
 
 		this.on("input", msg => {
 			let pin = config.pin;
-			if (pin == "Message passed") {
+			if (pin == "Message passed" || pin == "CUSTOM") {
 				pin = msg.pin
 				if (!pin) {
 					throw new Error("Pin was not passed by message");
@@ -33,8 +33,19 @@ module.exports = function(RED) {
 			}
 
 			if (this.rpiplc && pin) {
-				if (!this.rpiplc.instance) {
-					throw new Error("RPIPLC instance not defined. Please use rpiplc set config node");
+				const initializedPins = this.rpiplc.initializedPins;
+
+				if (!this.rpiplc.instance || typeof initializedPins !== "object") {
+					throw new Error("PLC instance not defined. Please use the 'plc set config' node");
+				}
+
+				if (initializedPins[pin] !== this.rpiplc.instance.INPUT) {
+					const pinModeRC = this.rpiplc.instance.pinMode(pin, this.rpiplc.instance.INPUT);
+					if (pinModeRC != 0) {
+						const errorMsg = `Pin ${pin} couldn't be configured (rc = ${pinModeRC})`;
+						throw new Error(errorMsg);
+					}
+					initializedPins[pin] = this.rpiplc.instance.INPUT;
 				}
 
 				msg.payload = this.rpiplc.instance.analogRead(pin);

@@ -24,38 +24,49 @@ module.exports = function(RED) {
 		this.rpiplc = RED.nodes.getNode(config.rpiplc);
 
 		this.on("input", msg => {
-			if (this.rpiplc && config.pin) {
-				let pin = config.pin;
-				if (pin == "Message passed") {
-					pin = msg.pin
-					if (!pin) {
-						throw new Error("Pin was not passed by message");
+			// Value validations
+			let value = config.value || msg.payload;
+			if (value === "HIGH"
+				|| value === "1"
+				|| (typeof value === "number" && value == 1)
+				|| (typeof value === "boolean" && value)) {
+				value = this.rpiplc.instance.HIGH;
+			}
+			else if (value === "LOW"
+				|| value === "0"
+				|| value === 0
+				|| (typeof value === "boolean" && !value)) {
+				value = this.rpiplc.instance.LOW;
+			}
+			else {
+				throw new Error(`Invalid payload sent: ${value}`);
+			}
+
+			let pin = config.pin;
+			if (pin == "Message passed" || pin == "CUSTOM") {
+				pin = msg.pin
+				if (!pin) {
+					throw new Error("Pin was not passed by message");
+				}
+			}
+
+			if (this.rpiplc && pin) {
+				const initializedPins = this.rpiplc.initializedPins;
+
+				if (!this.rpiplc.instance || typeof initializedPins !== "object") {
+					throw new Error("PLC instance not defined. Please use the 'plc set config' node");
+				}
+
+				if (initializedPins[pin] !== this.rpiplc.instance.OUTPUT) {
+					const pinModeRC = this.rpiplc.instance.pinMode(pin, this.rpiplc.instance.OUTPUT);
+					if (pinModeRC != 0) {
+						const errorMsg = `Pin ${pin} couldn't be configured (rc = ${pinModeRC})`;
+						throw new Error(errorMsg);
 					}
+					initializedPins[pin] = this.rpiplc.instance.OUTPUT;
 				}
 
-				let value = 0;
-				if (config.value != '') {
-					value = parseInt(config.value);
-				} else if (typeof msg.payload == 'number') {
-					value = msg.payload > 0 ? this.rpiplc.instance.HIGH : this.rpiplc.instance.LOW;
-				} else if (typeof msg.payload == 'boolean') {
-					value = msg.payload ? this.rpiplc.instance.HIGH : this.rpiplc.instance.LOW;
-				} else if (msg.payload === 'HIGH') {
-					value = this.rpiplc.instance.HIGH;
-				} else if (msg.payload === 'LOW') {
-					value = this.rpiplc.instance.LOW;
-				}
-
-				if (!this.rpiplc.instance) {
-					throw new Error("RPIPLC instance not defined. Please use rpiplc set config node");
-				}
-
-				try {
-					msg.rc = this.rpiplc.instance.digitalWrite(pin, value);
-				}
-				catch {
-					throw new Error(`Pin ${pin} is not available for the current configuration (currently ${this.rpiplc.version}/${this.rpiplc.model})`);
-				}
+				msg.rc = this.rpiplc.instance.digitalWrite(pin, value);
 				this.send(msg);
 			}
 		});
