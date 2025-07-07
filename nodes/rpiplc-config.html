@@ -24,19 +24,35 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 			isCustom: { value: false, required: true },
 			version: { value: "" },
 			model: { value: "" },
-			name: { value: "" }
+			name: { value: "" },
+			prettyName: { value: "" }
 		},
 		label: function() {
 			if (this.isCustom) {
 				return this.name || "Custom";
 			}
 			else {
-				if (this.version.startsWith("RPIPLC")) {
-					return this.name || `RPi PLC ${this.model.split('_')[1]} ${this.version.split('_')[1]}`;
+				if (this.name) {
+					return this.name;
 				}
-				else {
-					return this.name || `${this.version.replace('_', ' ')}`;
+				// Can't access selectElement when label is changed...
+				const versionSelectElement = document.getElementById('node-config-input-version');
+				if (versionSelectElement) {
+					const version = Array.from(versionSelectElement.options).find(
+						option => option.value === this.version).text;
+					if (version.startsWith("RPi PLC")) {
+						// Insert model in between if it's a Raspberry PLC
+						const modelSelectElement = document.getElementById('node-config-input-model');
+						const model = Array.from(modelSelectElement.options).find(
+							option => option.value === this.model).text;
+						this.prettyName = version.slice(0, 8) + model + version.slice(7);
+					}
+					else {
+						this.prettyName = version;
+					}
 				}
+
+				return this.prettyName;
 			}
 		},
 
