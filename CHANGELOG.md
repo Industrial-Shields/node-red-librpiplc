@@ -2,11 +2,33 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.0.1] - 2025-07-07
+
+### 🐛 Bug Fixes
+
+- Add QX mapping that matches TouchBerry serigraphy ([fc12f46](fc12f46fe04565f9ebd272066b5ba19f77435e50))
+
+
+### 💼 Other
+
+- Create .npmignore ([3bd3658](3bd3658e60439cc55eeb64791ff2673cecbbbab1))
+
+
+### 🎨 Styling
+
+- Make all PLC default names pretty ([881b669](881b669114f65eb2ec9df958e7bca3908ad438b4))
+
+
 ## [4.0.0] - 2025-07-03
 
 ### 🚀 Features
 
 - Merge branch 'new-pins-enum' ([5d727cc](5d727ccb6abddf694093f38c88f773edae0f26ff))
+
+
+## [archive/new-pins-enum] - 2025-07-03
+
+### 🚀 Features
 
 - If available, return RPIPLC RC of initialization as msg.payload in set config ([b795e89](b795e8932dfcc2eb3076a8b4539ec1a3b4177fb4))
 
