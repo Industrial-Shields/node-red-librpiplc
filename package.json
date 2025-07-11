@@ -1,6 +1,6 @@
 {
 	"name": "@industrial-shields/node-red-librpiplc",
-	"version": "4.0.1",
+	"version": "4.0.2",
 	"description": "Industrial Shields librpiplc bindings for Node-RED",
 	"keywords": [
 		"node-red",
