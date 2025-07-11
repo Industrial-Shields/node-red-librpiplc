@@ -2,7 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
-## [4.0.1] - 2025-07-07
+## [4.0.2] - 2025-07-11
+
+### 🐛 Bug Fixes
+
+- Add relays at RPIPLC digital write ([c8d6786](c8d67863ff56d84d1c8767a4844aa79677ea9d90))
+
+
+## [4.0.1] - 2025-07-08
 
 ### 🐛 Bug Fixes
 
@@ -10,6 +17,8 @@ All notable changes to this project will be documented in this file.
 
 
 ### 💼 Other
+
+- Bump library version ([d8b1b5a](d8b1b5a9b8b598fc2af3b22a12371265504f30e7))
 
 - Create .npmignore ([3bd3658](3bd3658e60439cc55eeb64791ff2673cecbbbab1))
 
