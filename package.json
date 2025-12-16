@@ -27,6 +27,6 @@
 		}
 	},
 	"dependencies": {
-		"@industrial-shields/librpiplc": "^4.0.0"
+		"@industrial-shields/librpiplc": "^4.1.0"
 	}
 }
